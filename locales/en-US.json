@@ -1,0 +1,22 @@
+{
+  "app": {
+    "title": "My Dream App",
+    "description": "Record and interpret your dreams"
+  },
+  "nav": {
+    "home": "Home",
+    "dreams": "Dreams"
+  },
+  "settings": {
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "dreamFeed": {
+    "loading": "Loading dreams...",
+    "error": "Error loading dreams.",
+    "by": "by",
+    "anonymous": "Anonymous",
+    "expand": "Expand",
+    "close": "Close"
+  }
+}

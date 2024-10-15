@@ -1,0 +1,17 @@
+export const imageTypes = {
+  abstrato: 'Abstrato',
+  anime: 'Anime',
+  aquarela: 'Aquarela',
+  'art-nouveau': 'Art Nouveau',
+  cartoon: 'Cartoon',
+  cyberpunk: 'Cyberpunk',
+  pixar: 'Estilo Pixar',
+  'van-gogh': 'Estilo Van Gogh',
+  'fantasia-medieval': 'Fantasia Medieval',
+  minimalista: 'Minimalista',
+  oleo: 'Óleo sobre tela',
+  'pixel-art': 'Pixel Art',
+  'pop-art': 'Pop Art',
+  realista: 'Realista',
+  surrealista: 'Surrealista',
+};

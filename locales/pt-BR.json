@@ -1,0 +1,22 @@
+{
+  "app": {
+    "title": "Meu App de Sonhos",
+    "description": "Registre e interprete seus sonhos"
+  },
+  "nav": {
+    "home": "Início",
+    "dreams": "Sonhos"
+  },
+  "settings": {
+    "language": "Idioma",
+    "theme": "Tema"
+  },
+  "dreamFeed": {
+    "loading": "Carregando sonhos...",
+    "error": "Erro ao carregar os sonhos.",
+    "by": "por",
+    "anonymous": "Anônimo",
+    "expand": "Expandir",
+    "close": "Fechar"
+  }
+}
