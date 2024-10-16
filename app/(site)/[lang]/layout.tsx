@@ -5,6 +5,7 @@ import Footer from '@/components/site/footer-section';
 import LanguageSelectorHeader from '@/components/site/language-selector';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,6 +21,7 @@ async function getMessages(lang: string) {
 async function getMetadata(lang: string): Promise<Metadata> {
   const messages = await getMessages(lang);
   return {
+    metadataBase: new URL('http://localhost:3000'),
     title: messages.metadata.title,
     description: messages.metadata.description,
     keywords: messages.metadata.keywords,
@@ -37,6 +39,7 @@ export async function generateMetadata({
 }: {
   params: { lang: string };
 }): Promise<Metadata> {
+  unstable_setRequestLocale(lang);
   return getMetadata(lang);
 }
 
@@ -51,13 +54,8 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: string };
 }) {
-  let messages;
-  try {
-    messages = await getMessages(lang);
-  } catch (error) {
-    console.log(error);
-    notFound();
-  }
+  unstable_setRequestLocale(lang);
+  const messages = await getMessages(lang);
 
   return (
     <html lang={lang}>

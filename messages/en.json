@@ -240,12 +240,12 @@
       },
       "intellectualProperty": {
         "title": "6. Intellectual Property and User Content",
-        "content1": "All content and materials available on Dream Oracle, including but not limited to text, graphics, logos, button icons, images, audio clips, digital downloads, and data compilations, are the property of Dream Oracle or its content suppliers and are protected by copyright laws.",
+        "content": "All content and materials available on Dream Oracle, including but not limited to text, graphics, logos, button icons, images, audio clips, digital downloads, and data compilations, are the property of Dream Oracle or its content suppliers and are protected by copyright laws.",
         "content2": "AI-generated images based on users' dreams belong to the users who generated them. However, by sharing dreams, interpretations, or images in our community, you grant Dream Oracle a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display such content in connection with the service."
       },
       "community": {
         "title": "7. Community and Sharing",
-        "content1": "Dream Oracle provides access to a community where users can share dreams, interpretations, and images. By participating in this community, you agree to respect the rights and privacy of other users. Do not share personally identifiable information of third parties without their explicit consent.",
+        "content": "Dream Oracle provides access to a community where users can share dreams, interpretations, and images. By participating in this community, you agree to respect the rights and privacy of other users. Do not share personally identifiable information of third parties without their explicit consent.",
         "content2": "By publicly sharing a dream on our platform, you agree that Dream Oracle may use that content, including associated interpretations and images, on our social media, such as Instagram, for portfolio purposes and service promotion. Your username or personal information will not be shared without your explicit permission."
       },
       "liability": {
