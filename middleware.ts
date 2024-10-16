@@ -8,6 +8,7 @@ const DEFAULT_LOCALE = 'pt';
 const intlMiddleware = createMiddleware({
   locales: LOCALES,
   defaultLocale: DEFAULT_LOCALE,
+  localeDetection: false,
 });
 
 export async function middleware(request: NextRequest) {
@@ -27,9 +28,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (isDreamsPage || isFeedPage || isSettingsPage) {
-    // Não aplicar o middleware de internacionalização para essas rotas
     if (!token) {
-      // Se não estiver autenticado, redirecionar para a página de login
       return NextResponse.redirect(
         new URL(`/${DEFAULT_LOCALE}/login`, request.url)
       );
@@ -37,9 +36,9 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Redirecionar a rota raiz para a rota com o DEFAULT_LOCALE
   if (isRootPage) {
-    return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}`, request.url));
+    const locale = request.cookies.get('NEXT_LOCALE')?.value || DEFAULT_LOCALE;
+    return NextResponse.redirect(new URL(`/${locale}`, request.url));
   }
 
   const response = intlMiddleware(request);

@@ -50,7 +50,9 @@ const CustomSelectValue: React.FC<CustomSelectValueProps> = ({ value }) => {
           className="mr-2"
         />
       )}
-      <span>{language?.label || 'Select language'}</span>
+      <span className="hidden sm:inline">
+        {language?.label || 'Select language'}
+      </span>
     </div>
   );
 };
@@ -71,7 +73,9 @@ export default function LanguageSelectorHeader() {
     setCookie('NEXT_LOCALE', newLocale, { path: '/' });
     setCurrentLocale(newLocale);
 
-    const newPathname = pathname.replace(/^\/[^\/]+/, `/${newLocale}`);
+    const segments = pathname.split('/');
+    segments[1] = newLocale;
+    const newPathname = segments.join('/');
     router.push(newPathname);
   };
 
@@ -79,8 +83,8 @@ export default function LanguageSelectorHeader() {
     <header className="absolute top-0 left-0 right-0 z-20 p-4">
       <div className="container mx-auto flex justify-end">
         <Select value={currentLocale} onValueChange={handleLanguageChange}>
-          <SelectTrigger className="w-[280px] bg-purple-800 text-white border-purple-600">
-            <Globe className="mr-2 h-4 w-4" />
+          <SelectTrigger className="w-[64px] sm:w-[280px] bg-purple-800 text-white border-purple-600">
+            <Globe className="mr-2 h-4 w-4 sm:inline hidden" />
             <SelectValue>
               <CustomSelectValue value={currentLocale} />
             </SelectValue>
@@ -96,7 +100,7 @@ export default function LanguageSelectorHeader() {
                     height={16}
                     className="mr-2"
                   />
-                  <span>{t(value)}</span>
+                  <span className="hidden sm:inline">{t(value)}</span>
                 </div>
               </SelectItem>
             ))}

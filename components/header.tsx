@@ -38,6 +38,9 @@ export default function Header() {
   });
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const closeDropdown = () => setIsDropdownOpen(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 text-foreground shadow-sm">
@@ -74,7 +77,10 @@ export default function Header() {
               </span>
             </div>
             <NotificationDropdown />
-            <DropdownMenu>
+            <DropdownMenu
+              open={isDropdownOpen}
+              onOpenChange={setIsDropdownOpen}
+            >
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
@@ -103,11 +109,13 @@ export default function Header() {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Link href="/settings">Configurações</Link>
+                <DropdownMenuItem onSelect={closeDropdown}>
+                  <Link href="/settings" onClick={closeDropdown}>
+                    Configurações
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem onSelect={closeDropdown}>
                   <LogoutButton />
                 </DropdownMenuItem>
               </DropdownMenuContent>
