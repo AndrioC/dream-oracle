@@ -4,21 +4,22 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { InstagramLogoIcon } from '@radix-ui/react-icons';
+import { useTranslations } from 'next-intl';
 
 const MotionDiv = dynamic<
   React.ComponentProps<typeof import('framer-motion').motion.div>
 >(() => import('framer-motion').then((mod) => mod.motion.div), { ssr: false });
 
 const footerLinks = [
-  { name: 'Como Funciona', href: '/#how-it-works' },
-  { name: 'Preços', href: '/#pricing' },
-  { name: 'FAQ', href: '/#faq' },
-  { name: 'Contato', href: '/#contact' },
+  { name: 'howItWorks', href: '/#how-it-works' },
+  { name: 'pricing', href: '/#pricing' },
+  { name: 'faq', href: '/#faq' },
+  { name: 'contact', href: '/#contact' },
 ];
 
 const legalLinks = [
-  { name: 'Termos de Uso', href: '/terms' },
-  { name: 'Política de Privacidade', href: '/privacy' },
+  { name: 'termsOfUse', href: '/terms' },
+  { name: 'privacyPolicy', href: '/privacy' },
 ];
 
 const socialLinks = [
@@ -31,6 +32,7 @@ const socialLinks = [
 
 export default function Footer() {
   const [isMounted, setIsMounted] = useState(false);
+  const t = useTranslations('Footer');
 
   useEffect(() => {
     setIsMounted(true);
@@ -50,11 +52,8 @@ export default function Footer() {
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4">Dream Oracle</h3>
-              <p className="text-purple-200 mb-4">
-                Descubra o significado dos seus sonhos com a ajuda da nossa IA
-                avançada.
-              </p>
+              <h3 className="text-2xl font-bold mb-4">{t('title')}</h3>
+              <p className="text-purple-200 mb-4">{t('description')}</p>
               <div className="flex space-x-4">
                 {socialLinks.map((link) => (
                   <a
@@ -71,7 +70,7 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Links Úteis</h4>
+              <h4 className="text-lg font-semibold mb-4">{t('usefulLinks')}</h4>
               <ul className="space-y-2">
                 {footerLinks.map((link) => (
                   <li key={link.name}>
@@ -79,14 +78,14 @@ export default function Footer() {
                       href={link.href}
                       className="text-purple-200 hover:text-white transition duration-150 ease-in-out"
                     >
-                      {link.name}
+                      {t(`links.${link.name}`)}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Legal</h4>
+              <h4 className="text-lg font-semibold mb-4">{t('legal')}</h4>
               <ul className="space-y-2">
                 {legalLinks.map((link) => (
                   <li key={link.name}>
@@ -94,7 +93,7 @@ export default function Footer() {
                       href={link.href}
                       className="text-purple-200 hover:text-white transition duration-150 ease-in-out"
                     >
-                      {link.name}
+                      {t(`links.${link.name}`)}
                     </Link>
                   </li>
                 ))}
@@ -109,8 +108,7 @@ export default function Footer() {
           className="mt-8 pt-8 border-t border-purple-800 text-center"
         >
           <p className="text-purple-200">
-            &copy; {new Date().getFullYear()} Dream Oracle. Todos os direitos
-            reservados.
+            {t('copyright', { year: new Date().getFullYear() })}
           </p>
         </MotionDiv>
       </div>

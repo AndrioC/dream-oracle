@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Send } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl';
 
 const MotionDiv = dynamic<
   React.ComponentProps<typeof import('framer-motion').motion.div>
@@ -13,6 +14,7 @@ export default function ContactSection() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const t = useTranslations('ContactSection');
 
   useEffect(() => {
     setIsMounted(true);
@@ -42,12 +44,9 @@ export default function ContactSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Entre em Contato
-          </h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">{t('title')}</h2>
           <p className="text-xl text-purple-200 max-w-2xl mx-auto">
-            Tem alguma dúvida ou sugestão? Estamos aqui para ajudar. Preencha o
-            formulário abaixo e entraremos em contato em breve.
+            {t('subtitle')}
           </p>
         </MotionDiv>
 
@@ -63,7 +62,7 @@ export default function ContactSection() {
                 htmlFor="name"
                 className="block text-sm font-medium text-purple-200"
               >
-                Nome
+                {t('form.name.label')}
               </label>
               <input
                 type="text"
@@ -73,7 +72,7 @@ export default function ContactSection() {
                 onChange={(e) => setName(e.target.value)}
                 required
                 className="mt-1 block w-full px-3 py-2 bg-white/10 border border-purple-300 rounded-md text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                placeholder="Seu nome"
+                placeholder={t('form.name.placeholder')}
               />
             </div>
             <div>
@@ -81,7 +80,7 @@ export default function ContactSection() {
                 htmlFor="email"
                 className="block text-sm font-medium text-purple-200"
               >
-                Email
+                {t('form.email.label')}
               </label>
               <input
                 type="email"
@@ -91,7 +90,7 @@ export default function ContactSection() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="mt-1 block w-full px-3 py-2 bg-white/10 border border-purple-300 rounded-md text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                placeholder="seu@email.com"
+                placeholder={t('form.email.placeholder')}
               />
             </div>
             <div>
@@ -99,7 +98,7 @@ export default function ContactSection() {
                 htmlFor="message"
                 className="block text-sm font-medium text-purple-200"
               >
-                Mensagem
+                {t('form.message.label')}
               </label>
               <textarea
                 id="message"
@@ -109,7 +108,7 @@ export default function ContactSection() {
                 required
                 rows={4}
                 className="mt-1 block w-full px-3 py-2 bg-white/10 border border-purple-300 rounded-md text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                placeholder="Sua mensagem aqui..."
+                placeholder={t('form.message.placeholder')}
               ></textarea>
             </div>
             <div>
@@ -117,7 +116,7 @@ export default function ContactSection() {
                 type="submit"
                 className="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-900 bg-purple-300 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-150 ease-in-out"
               >
-                Enviar Mensagem
+                {t('form.submit')}
                 <Send className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
               </button>
             </div>

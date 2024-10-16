@@ -1,0 +1,350 @@
+{
+  "metadata": {
+    "title": "Dream Oracle - AI Dream Interpretation",
+    "description": "Discover the meaning of your dreams with AI interpretation and unique image generation.",
+    "keywords": [
+      "dream interpretation",
+      "AI",
+      "image generation",
+      "dream analysis"
+    ],
+    "authorName": "Dream Oracle Team",
+    "ogTitle": "Dream Oracle - AI Dream Interpretation",
+    "ogDescription": "Discover the meaning of your dreams with AI interpretation and unique image generation."
+  },
+  "LanguageSelector": {
+    "selectLanguage": "Select language",
+    "pt": "Portuguese (Brazil)",
+    "en": "English (United States)"
+  },
+  "HeroSection": {
+    "title": "Unravel the Mysteries of Your Dreams",
+    "subtitle": "AI-powered dream interpretation and unique image generation",
+    "ctaButton": "Get Started",
+    "imageAlt": "Dreamlike background"
+  },
+  "ConceptExplanation": {
+    "title": "How Dream Oracle Works",
+    "subtitle": "Uncover the hidden meaning of your dreams with our cutting-edge technology that combines AI and visual creativity.",
+    "features": {
+      "describeYourDream": {
+        "title": "Describe Your Dream",
+        "description": "Share the details of your dream on our intuitive platform."
+      },
+      "aiInterprets": {
+        "title": "AI Interprets",
+        "description": "Our advanced AI analyzes your dream and provides deep insights."
+      },
+      "generatesUniqueImage": {
+        "title": "Generates Unique Image",
+        "description": "Visualize your dream with an image generated exclusively for you."
+      }
+    }
+  },
+  "BenefitsSection": {
+    "title": "Why use Dream Oracle?",
+    "subtitle": "Explore the transformative benefits of AI dream interpretation and creative visualization.",
+    "benefits": {
+      "deepSelfKnowledge": {
+        "title": "Deep Self-Knowledge",
+        "description": "Discover valuable insights about your subconscious and thought patterns."
+      },
+      "personalGuidance": {
+        "title": "Personal Guidance",
+        "description": "Get direction for important decisions and life challenges."
+      },
+      "stimulateCreativity": {
+        "title": "Stimulate Creativity",
+        "description": "Use interpretations and images as inspiration for creative projects."
+      },
+      "problemSolving": {
+        "title": "Problem Solving",
+        "description": "Find innovative solutions to issues that concern you in everyday life."
+      }
+    },
+    "ctaButton": "Start your journey of self-discovery"
+  },
+  "HowItWorks": {
+    "title": "How Dream Oracle Works",
+    "subtitle": "Discover the step-by-step process of how we transform your dreams into valuable insights and unique images.",
+    "steps": {
+      "describeYourDream": {
+        "title": "Describe Your Dream",
+        "description": "Share the details of your dream on our intuitive platform. The more details, the better the interpretation will be."
+      },
+      "aiAnalyzesDream": {
+        "title": "AI Analyzes the Dream",
+        "description": "Our advanced artificial intelligence processes the information from your dream, identifying important symbols and patterns."
+      },
+      "imageGeneration": {
+        "title": "Image Generation",
+        "description": "Based on the analysis, our AI creates a unique image that visually represents the key elements of your dream."
+      },
+      "creditUsage": {
+        "title": "Credit Usage",
+        "description": "Each interpretation and image generation uses credits from your account. Recharge as needed to continue exploring your dreams."
+      }
+    },
+    "ctaButton": "Try it now"
+  },
+  "DreamExamples": {
+    "title": "Examples of Interpretations and Images",
+    "subtitle": "Explore some examples of how Dream Oracle interprets dreams and generates unique images based on these interpretations.",
+    "examples": {
+      "flyingOverCity": {
+        "title": "Flying over a city",
+        "description": "I was flying over a city, feeling an incredible sense of freedom. The panoramic view below me gave me a completely new perspective of the urban landscape.",
+        "interpretation": "You are in a moment of personal growth, able to overcome limitations and see things from a new angle. It's a good time to set ambitious goals."
+      },
+      "chasedByShadows": {
+        "title": "Chased by shadows",
+        "description": "In my dream, I was being chased by mysterious shadows. No matter how fast I ran, they always seemed to be right behind me.",
+        "interpretation": "This dream suggests that there are issues or emotions you need to face. The shadowy nature of the pursuers indicates that these aspects may be in your subconscious."
+      },
+      "exploringUnknownHouse": {
+        "title": "Exploring an unknown house",
+        "description": "I found myself exploring a house I had never seen before. With each door I opened, I discovered a new surprising room, full of fascinating objects.",
+        "interpretation": "You are in a process of self-discovery. Each new room represents different facets of your personality or abilities that you are about to discover or develop."
+      }
+    },
+    "interpretationLabel": "Interpretation:",
+    "ctaButton": "Interpret your dream now"
+  },
+  "PricingPlans": {
+    "title": "Plans and Pricing",
+    "subtitle": "Choose the credit package that best suits your needs. Pay once and use your credits whenever you want.",
+    "creditExplanation": "Each dream interpretation costs 1 credit, and each generated image costs 1 additional credit.",
+    "plans": {
+      "basic": {
+        "name": "Basic Package",
+        "price": "$ 3.99",
+        "features": [
+          "10 dream interpretations",
+          "10 generated images",
+          "Access to the dreamers community"
+        ]
+      },
+      "standard": {
+        "name": "Standard Package",
+        "price": "$ 14.99",
+        "features": [
+          "50 dream interpretations",
+          "50 generated images",
+          "Access to the dreamers community"
+        ]
+      },
+      "premium": {
+        "name": "Premium Package",
+        "price": "$ 24.99",
+        "features": [
+          "100 dream interpretations",
+          "100 generated images",
+          "Access to the dreamers community"
+        ]
+      }
+    },
+    "creditsExplanation": "{credits} credits (equivalent to {dreams} complete dreams)",
+    "creditsValidity": "Credits do not expire and can be used at any time.",
+    "notSure": "Not sure how many credits you need? Start with the Basic Package and buy more credits as needed."
+  },
+  "FAQSection": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to the most common questions about Dream Oracle and how it can help interpret your dreams.",
+    "faqs": [
+      {
+        "question": "How does AI dream interpretation work?",
+        "answer": "Our AI analyzes the details of your dream, identifying symbols, themes, and patterns. Using its vast knowledge of dream interpretation and psychology, it provides personalized insights based on the information you share."
+      },
+      {
+        "question": "Are the generated images unique for each dream?",
+        "answer": "Yes, each image is generated exclusively based on the specific details of your dream. Our AI creates a unique visual representation that captures the most significant elements of your dream experience."
+      },
+      {
+        "question": "How long does it take to receive my dream interpretation and image?",
+        "answer": "Typically, you'll receive your interpretation and image within a few minutes of submitting your dream details. The exact time may vary depending on the complexity of the dream and the volume of requests."
+      },
+      {
+        "question": "Do credits expire?",
+        "answer": "No, the credits you purchase do not expire. You can use them at any time, with no expiration date."
+      },
+      {
+        "question": "Can I share my interpretations and images with others?",
+        "answer": "Yes, you can share your interpretations and images. However, we recommend keeping the personal details of your dream private unless you feel comfortable sharing them."
+      },
+      {
+        "question": "Does AI replace human dream interpretation?",
+        "answer": "Our AI is a powerful tool for gaining insights into your dreams, but it doesn't completely replace human interpretation. It offers an additional perspective that can complement other forms of dream analysis."
+      }
+    ],
+    "moreQuestions": "Still have questions? We're here to help!",
+    "contactButton": "Contact us"
+  },
+  "ContactSection": {
+    "title": "Contact Us",
+    "subtitle": "Have a question or suggestion? We're here to help. Fill out the form below and we'll get back to you soon.",
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your@email.com"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Your message here..."
+      },
+      "submit": "Send Message"
+    }
+  },
+  "Footer": {
+    "title": "Dream Oracle",
+    "description": "Discover the meaning of your dreams with the help of AI.",
+    "usefulLinks": "Useful Links",
+    "legal": "Legal",
+    "links": {
+      "howItWorks": "How It Works",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "termsOfUse": "Terms of Use",
+      "privacyPolicy": "Privacy Policy"
+    },
+    "copyright": "© {year} Dream Oracle. All rights reserved."
+  },
+  "TermsOfUse": {
+    "title": "Terms of Use",
+    "introduction": "Welcome to Dream Oracle's Terms of Use. By accessing or using our service, you agree to comply with and be bound by these terms. Please read them carefully.",
+    "sections": {
+      "acceptance": {
+        "title": "1. Acceptance of Terms",
+        "content": "By using Dream Oracle, you agree to these Terms of Use and our Privacy Policy. If you do not agree to these terms, please do not use our service."
+      },
+      "description": {
+        "title": "2. Service Description",
+        "content": "Dream Oracle is an AI-based dream interpretation service that provides analyses and generated images based on dream details provided by users. Additionally, we offer access to a community where users can share dreams, interpretations, and generated images."
+      },
+      "usage": {
+        "title": "3. Use of Service",
+        "content": "You agree to use Dream Oracle only for lawful purposes and in accordance with these terms. You must not use the service in any way that could damage, disable, overburden, or impair Dream Oracle. Content related to pornography, racism, homophobia, and other forms of discrimination or hate will not be tolerated on our platform, including in the creation of dream images and interpretations."
+      },
+      "account": {
+        "title": "4. User Account",
+        "content": "To use certain features of Dream Oracle, you may need to create an account. You are responsible for maintaining the confidentiality of your account and password."
+      },
+      "credits": {
+        "title": "5. Purchase of Credits",
+        "content": "Dream Oracle operates on a credit system. You can purchase credits to use our dream interpretation and image generation services.",
+        "important": "Important: Purchased credits are non-refundable due to the costs associated with using AI technology to provide our interpretations and images."
+      },
+      "intellectualProperty": {
+        "title": "6. Intellectual Property and User Content",
+        "content1": "All content and materials available on Dream Oracle, including but not limited to text, graphics, logos, button icons, images, audio clips, digital downloads, and data compilations, are the property of Dream Oracle or its content suppliers and are protected by copyright laws.",
+        "content2": "AI-generated images based on users' dreams belong to the users who generated them. However, by sharing dreams, interpretations, or images in our community, you grant Dream Oracle a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display such content in connection with the service."
+      },
+      "community": {
+        "title": "7. Community and Sharing",
+        "content1": "Dream Oracle provides access to a community where users can share dreams, interpretations, and images. By participating in this community, you agree to respect the rights and privacy of other users. Do not share personally identifiable information of third parties without their explicit consent.",
+        "content2": "By publicly sharing a dream on our platform, you agree that Dream Oracle may use that content, including associated interpretations and images, on our social media, such as Instagram, for portfolio purposes and service promotion. Your username or personal information will not be shared without your explicit permission."
+      },
+      "liability": {
+        "title": "8. Limitation of Liability",
+        "content": "Dream Oracle provides AI-generated dream interpretations and images for entertainment and personal reflection purposes. We do not guarantee the accuracy or reliability of these interpretations, and they should not be considered as professional advice. We are not responsible for any actions taken based on the interpretations or images provided."
+      },
+      "userConduct": {
+        "title": "9. User Conduct",
+        "content": "You agree not to use Dream Oracle to:",
+        "items": {
+          "item1": "Post illegal, abusive, defamatory, pornographic, or offensive content",
+          "item2": "Harass, threaten, or intimidate other users",
+          "item3": "Violate copyrights, trademarks, or other intellectual property rights",
+          "item4": "Distribute spam or unsolicited commercial content",
+          "item5": "Attempt to access other users' accounts or restricted areas of the service"
+        }
+      },
+      "modifications": {
+        "title": "10. Modifications to Terms",
+        "content": "We reserve the right to modify these Terms of Use at any time. We will continue to post the changes here and encourage you to review these Terms periodically."
+      },
+      "termination": {
+        "title": "11. Termination",
+        "content": "We reserve the right to terminate or suspend your account and access to Dream Oracle, at our discretion, without prior notice, for any reason, including but not limited to a violation of these Terms of Use."
+      },
+      "applicableLaw": {
+        "title": "12. Applicable Law",
+        "content": "These Terms of Use shall be governed by and construed in accordance with the laws of Brazil, without regard to its conflict of law provisions."
+      },
+      "contact": {
+        "title": "13. Contact",
+        "content": "If you have any questions about these Terms of Use, please contact us at: contact@dreamoracle.com"
+      }
+    },
+    "lastUpdate": "Last updated: {date}"
+  },
+  "PrivacyPolicy": {
+    "title": "Privacy Policy",
+    "introduction": "Your privacy is important to us. It is Dream Oracle's policy to respect your privacy regarding any information we may collect from you across our website.",
+    "sections": {
+      "informationCollected": {
+        "title": "1. Information We Collect",
+        "content1": "We collect personal information that you provide directly to us, such as your name, email address, and payment details when you register on our platform or make a purchase.",
+        "content2": "We also collect information about the dreams you share for interpretation, as well as your service usage history."
+      },
+      "informationUsage": {
+        "title": "2. How We Use Your Information",
+        "content": "We use the information we collect to:",
+        "items": {
+          "item1": "Provide, maintain, and improve our dream interpretation services",
+          "item2": "Process transactions and send notifications related to your account",
+          "item3": "Respond to your comments, questions, and requests",
+          "item4": "Send information about features, services, and promotions that may be of interest to you",
+          "item5": "Monitor and analyze trends, usage, and activities in connection with our service"
+        }
+      },
+      "informationSharing": {
+        "title": "3. Information Sharing",
+        "content1": "We do not share your personal information with third parties except in the following circumstances:",
+        "items": {
+          "item1": "With your consent",
+          "item2": "To comply with legal obligations",
+          "item3": "To protect and defend our rights and property",
+          "item4": "With service providers who help us operate our business (these are required to maintain the confidentiality of the information)"
+        },
+        "content2": "Additionally, when you publicly share a dream on our platform, you grant us permission to use that content, including associated interpretations and images, on our social media, such as Instagram, for portfolio purposes and service promotion. Your username and personal information will not be shared in these posts without your explicit permission."
+      },
+      "dataSecurity": {
+        "title": "4. Data Security",
+        "content": "We implement security measures to protect your information against unauthorized access, alteration, disclosure, or destruction. This includes data encryption, firewalls, and physical access controls to our data centers."
+      },
+      "userRights": {
+        "title": "5. Your Rights",
+        "content": "You have the right to access, correct, or delete your personal information. You can also opt out of receiving promotional communications from us. To exercise these rights, please contact us through our contact form."
+      },
+      "aiUsage": {
+        "title": "6. AI Usage and Dream Data",
+        "content": "The dream details you share are processed by our AI to provide interpretations. This data is anonymized and may be used to improve our AI algorithms. We do not share the specific details of your dreams with third parties."
+      },
+      "cookies": {
+        "title": "7. Cookies and Similar Technologies",
+        "content": "We use cookies and similar technologies to enhance user experience, analyze website traffic, and personalize content. You can control the use of cookies through your browser settings."
+      },
+      "policyChanges": {
+        "title": "8. Changes to This Policy",
+        "content": "We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page."
+      },
+      "contact": {
+        "title": "9. Contact Us",
+        "content": "If you have any questions about this Privacy Policy, please contact us through our contact form."
+      }
+    },
+    "lastUpdate": "Last updated: {date}"
+  },
+  "LoginCard": {
+    "title": "Welcome to Dream Oracle",
+    "description": "Unravel the mysteries of your dreams",
+    "logoAlt": "Dream Oracle Logo",
+    "loginButton": "Sign in with Google",
+    "termsAndPrivacy": "By logging in, you agree to our <terms>Terms of Use</terms> and <privacy>Privacy Policy</privacy>."
+  }
+}

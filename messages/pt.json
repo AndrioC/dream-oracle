@@ -1,0 +1,353 @@
+{
+  "metadata": {
+    "title": "Dream Oracle - Interpretação de Sonhos por IA",
+    "description": "Descubra o significado dos seus sonhos com interpretação por IA e geração de imagens únicas.",
+    "keywords": [
+      "interpretação de sonhos",
+      "IA",
+      "geração de imagens",
+      "análise de sonhos"
+    ],
+    "authorName": "Equipe Dream Oracle",
+    "ogTitle": "Dream Oracle - Interpretação de Sonhos por IA",
+    "ogDescription": "Descubra o significado dos seus sonhos com interpretação por IA e geração de imagens únicas."
+  },
+  "LanguageSelector": {
+    "selectLanguage": "Selecione o idioma",
+    "pt": "Português (Brasil)",
+    "en": "Inglês (Estados Unidos)"
+  },
+  "HeroSection": {
+    "title": "Desvende os Mistérios dos Seus Sonhos",
+    "subtitle": "Interpretação de sonhos por IA e geração de imagens únicas",
+    "ctaButton": "Comece agora",
+    "imageAlt": "Fundo onírico"
+  },
+  "ConceptExplanation": {
+    "title": "Como funciona o Dream Oracle",
+    "subtitle": "Descubra o significado oculto dos seus sonhos com nossa tecnologia de ponta que combina IA e criatividade visual.",
+    "features": {
+      "describeYourDream": {
+        "title": "Descreva seu sonho",
+        "description": "Compartilhe os detalhes do seu sonho em nossa plataforma intuitiva."
+      },
+      "aiInterprets": {
+        "title": "IA interpreta",
+        "description": "Nossa IA avançada analisa seu sonho e fornece insights profundos."
+      },
+      "generatesUniqueImage": {
+        "title": "Gera imagem única",
+        "description": "Visualize seu sonho com uma imagem gerada exclusivamente para você."
+      }
+    }
+  },
+  "BenefitsSection": {
+    "title": "Por que usar o Dream Oracle?",
+    "subtitle": "Explore os benefícios transformadores da interpretação de sonhos com IA e visualização criativa.",
+    "benefits": {
+      "deepSelfKnowledge": {
+        "title": "Autoconhecimento Profundo",
+        "description": "Descubra insights valiosos sobre seu subconsciente e padrões de pensamento."
+      },
+      "personalGuidance": {
+        "title": "Orientação Pessoal",
+        "description": "Obtenha direcionamento para decisões importantes e desafios da vida."
+      },
+      "stimulateCreativity": {
+        "title": "Estimule a Criatividade",
+        "description": "Use as interpretações e imagens como inspiração para projetos criativos."
+      },
+      "problemSolving": {
+        "title": "Resolução de Problemas",
+        "description": "Encontre soluções inovadoras para questões que o preocupam no dia a dia."
+      }
+    },
+    "ctaButton": "Comece sua jornada de autodescoberta"
+  },
+  "HowItWorks": {
+    "title": "Como Funciona o Dream Oracle",
+    "subtitle": "Descubra o processo passo a passo de como transformamos seus sonhos em insights valiosos e imagens únicas.",
+    "steps": {
+      "describeYourDream": {
+        "title": "Descreva seu sonho",
+        "description": "Compartilhe os detalhes do seu sonho em nossa plataforma intuitiva. Quanto mais detalhes, melhor será a interpretação."
+      },
+      "aiAnalyzesDream": {
+        "title": "IA analisa o sonho",
+        "description": "Nossa inteligência artificial avançada processa as informações do seu sonho, identificando símbolos e padrões importantes."
+      },
+      "imageGeneration": {
+        "title": "Geração de imagem",
+        "description": "Com base na análise, nossa IA cria uma imagem única que representa visualmente os elementos-chave do seu sonho."
+      },
+      "creditUsage": {
+        "title": "Uso de créditos",
+        "description": "Cada interpretação e geração de imagem utiliza créditos da sua conta. Recarregue conforme necessário para continuar explorando seus sonhos."
+      }
+    },
+    "ctaButton": "Experimente agora"
+  },
+  "DreamExamples": {
+    "title": "Exemplos de Interpretações e Imagens",
+    "subtitle": "Explore alguns exemplos de como o Dream Oracle interpreta sonhos e gera imagens únicas baseadas nessas interpretações.",
+    "examples": {
+      "flyingOverCity": {
+        "title": "Voando sobre uma cidade",
+        "description": "Eu estava voando sobre uma cidade, sentindo uma liberdade incrível. A vista panorâmica abaixo de mim me dava uma perspectiva completamente nova da paisagem urbana.",
+        "interpretation": "Você está em um momento de crescimento pessoal, capaz de superar limitações e ver as coisas de um novo ângulo. É um bom momento para estabelecer metas ambiciosas."
+      },
+      "chasedByShadows": {
+        "title": "Perseguido por sombras",
+        "description": "No meu sonho, eu estava sendo perseguido por sombras misteriosas. Não importava o quão rápido eu corria, elas pareciam sempre estar logo atrás de mim.",
+        "interpretation": "Este sonho sugere que há questões ou emoções que você precisa enfrentar. A natureza sombria dos perseguidores indica que estes aspectos podem estar no seu subconsciente."
+      },
+      "exploringUnknownHouse": {
+        "title": "Explorando uma casa desconhecida",
+        "description": "Eu me vi explorando uma casa que eu nunca tinha visto antes. A cada porta que eu abria, descobria um novo cômodo surpreendente, cheio de objetos fascinantes.",
+        "interpretation": "Você está em um processo de autodescoberta. Cada novo cômodo representa diferentes facetas da sua personalidade ou habilidades que você está prestes a descobrir ou desenvolver."
+      }
+    },
+    "interpretationLabel": "Interpretação:",
+    "ctaButton": "Interprete seu sonho agora"
+  },
+  "PricingPlans": {
+    "title": "Planos e Preços",
+    "subtitle": "Escolha o pacote de créditos que melhor se adapta às suas necessidades. Pague uma vez e use seus créditos quando quiser.",
+    "creditExplanation": "Cada interpretação de sonho custa 1 crédito, e cada imagem gerada custa 1 crédito adicional.",
+    "plans": {
+      "basic": {
+        "name": "Pacote Básico",
+        "price": "R$ 15,99",
+        "dolarPrice": "$ 3.99",
+        "features": [
+          "10 interpretações de sonhos",
+          "10 imagens geradas",
+          "Acesso à comunidade de sonhadores"
+        ]
+      },
+      "standard": {
+        "name": "Pacote Padrão",
+        "price": "R$ 59,99",
+        "dolarPrice": "$ 14.99",
+        "features": [
+          "50 interpretações de sonhos",
+          "50 imagens geradas",
+          "Acesso à comunidade de sonhadores"
+        ]
+      },
+      "premium": {
+        "name": "Pacote Premium",
+        "price": "R$ 84,99",
+        "dolarPrice": "$ 24.99",
+        "features": [
+          "100 interpretações de sonhos",
+          "100 imagens geradas",
+          "Acesso à comunidade de sonhadores"
+        ]
+      }
+    },
+    "creditsExplanation": "{credits} créditos (equivalente a {dreams} sonhos completos)",
+    "creditsValidity": "Os créditos não expiram e podem ser usados a qualquer momento.",
+    "notSure": "Não tem certeza de quantos créditos precisa? Comece com o Pacote Básico e compre mais créditos conforme necessário."
+  },
+  "FAQSection": {
+    "title": "Perguntas Frequentes",
+    "subtitle": "Encontre respostas para as dúvidas mais comuns sobre o Dream Oracle e como ele pode ajudar na interpretação dos seus sonhos.",
+    "faqs": [
+      {
+        "question": "Como funciona a interpretação de sonhos por IA?",
+        "answer": "Nossa IA analisa os detalhes do seu sonho, identificando símbolos, temas e padrões. Utilizando seu vasto conhecimento em interpretação de sonhos e psicologia, ela fornece insights personalizados baseados nas informações que você compartilha."
+      },
+      {
+        "question": "As imagens geradas são únicas para cada sonho?",
+        "answer": "Sim, cada imagem é gerada exclusivamente com base nos detalhes específicos do seu sonho. Nossa IA cria uma representação visual única que captura os elementos mais significativos da sua experiência onírica."
+      },
+      {
+        "question": "Quanto tempo leva para receber a interpretação e a imagem do meu sonho?",
+        "answer": "Normalmente, você receberá sua interpretação e imagem em poucos minutos após submeter os detalhes do seu sonho. O tempo exato pode variar dependendo da complexidade do sonho e do volume de solicitações."
+      },
+      {
+        "question": "Os créditos expiram?",
+        "answer": "Não, os créditos que você compra não expiram. Você pode usá-los a qualquer momento, sem prazo de validade."
+      },
+      {
+        "question": "Posso compartilhar minhas interpretações e imagens com outras pessoas?",
+        "answer": "Sim, você pode compartilhar suas interpretações e imagens. No entanto, recomendamos que você mantenha os detalhes pessoais do seu sonho privados, a menos que se sinta confortável em compartilhá-los."
+      },
+      {
+        "question": "A IA substitui a interpretação humana dos sonhos?",
+        "answer": "Nossa IA é uma ferramenta poderosa para obter insights sobre seus sonhos, mas não substitui completamente a interpretação humana. Ela oferece uma perspectiva adicional que pode complementar outras formas de análise de sonhos."
+      }
+    ],
+    "moreQuestions": "Ainda tem dúvidas? Estamos aqui para ajudar!",
+    "contactButton": "Entre em contato"
+  },
+  "ContactSection": {
+    "title": "Entre em Contato",
+    "subtitle": "Tem alguma dúvida ou sugestão? Estamos aqui para ajudar. Preencha o formulário abaixo e entraremos em contato em breve.",
+    "form": {
+      "name": {
+        "label": "Nome",
+        "placeholder": "Seu nome"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "seu@email.com"
+      },
+      "message": {
+        "label": "Mensagem",
+        "placeholder": "Sua mensagem aqui..."
+      },
+      "submit": "Enviar Mensagem"
+    }
+  },
+  "Footer": {
+    "title": "Dream Oracle",
+    "description": "Descubra o significado dos seus sonhos com a ajuda de IA.",
+    "usefulLinks": "Links Úteis",
+    "legal": "Legal",
+    "links": {
+      "howItWorks": "Como Funciona",
+      "pricing": "Preços",
+      "faq": "FAQ",
+      "contact": "Contato",
+      "termsOfUse": "Termos de Uso",
+      "privacyPolicy": "Política de Privacidade"
+    },
+    "copyright": "© {year} Dream Oracle. Todos os direitos reservados."
+  },
+  "TermsOfUse": {
+    "title": "Termos de Uso",
+    "introduction": "Bem-vindo aos Termos de Uso do Dream Oracle. Ao acessar ou usar nosso serviço, você concorda em cumprir e estar vinculado a estes termos. Por favor, leia-os atentamente.",
+    "sections": {
+      "acceptance": {
+        "title": "1. Aceitação dos Termos",
+        "content": "Ao usar o Dream Oracle, você concorda com estes Termos de Uso e nossa Política de Privacidade. Se você não concordar com estes termos, por favor, não use nosso serviço."
+      },
+      "description": {
+        "title": "2. Descrição do Serviço",
+        "content": "O Dream Oracle é um serviço de interpretação de sonhos baseado em IA que fornece análises e imagens geradas com base nos detalhes dos sonhos fornecidos pelos usuários. Além disso, oferecemos acesso a uma comunidade onde os usuários podem compartilhar sonhos, interpretações e imagens geradas."
+      },
+      "usage": {
+        "title": "3. Uso do Serviço",
+        "content": "Você concorda em usar o Dream Oracle apenas para fins legais e de acordo com estes termos. Você não deve usar o serviço de maneira que possa danificar, desativar, sobrecarregar ou prejudicar o Dream Oracle. Conteúdo relacionado a pornografia, racismo, homofobia e outras formas de discriminação ou ódio não será tolerado em nossa plataforma, incluindo na criação de imagens e interpretações de sonhos."
+      },
+      "account": {
+        "title": "4. Conta de Usuário",
+        "content": "Para usar certos recursos do Dream Oracle, você pode precisar criar uma conta. Você é responsável por manter a confidencialidade de sua conta e senha."
+      },
+      "credits": {
+        "title": "5. Compra de Créditos",
+        "content": "O Dream Oracle opera com um sistema de créditos. Você pode comprar créditos para usar nossos serviços de interpretação de sonhos e geração de imagens.",
+        "important": "Importante: Os créditos comprados não são reembolsáveis devido aos custos associados ao uso da tecnologia de IA para fornecer nossas interpretações e imagens."
+      },
+      "intellectualProperty": {
+        "title": "6. Propriedade Intelectual e Conteúdo do Usuário",
+        "content1": "Todo o conteúdo e materiais disponíveis no Dream Oracle, incluindo mas não se limitando a texto, gráficos, logotipos, ícones de botões, imagens, clipes de áudio, downloads digitais e compilações de dados, são propriedade do Dream Oracle ou de seus fornecedores de conteúdo e estão protegidos por leis de direitos autorais.",
+        "content2": "As imagens geradas pela IA com base nos sonhos dos usuários pertencem aos usuários que as geraram. No entanto, ao compartilhar sonhos, interpretações ou imagens em nossa comunidade, você concede ao Dream Oracle uma licença não exclusiva, mundial, livre de royalties para usar, reproduzir, modificar, adaptar, publicar, traduzir, criar trabalhos derivados, distribuir e exibir tal conteúdo em conexão com o serviço."
+      },
+      "community": {
+        "title": "7. Comunidade e Compartilhamento",
+        "content1": "O Dream Oracle oferece acesso a uma comunidade onde os usuários podem compartilhar sonhos, interpretações e imagens. Ao participar desta comunidade, você concorda em respeitar os direitos e a privacidade dos outros usuários. Não compartilhe informações pessoais identificáveis de terceiros sem seu consentimento explícito.",
+        "content2": "Ao compartilhar um sonho publicamente em nossa plataforma, você concorda que o Dream Oracle pode usar esse conteúdo, incluindo interpretações e imagens associadas, em nossas redes sociais, como Instagram, para fins de portfólio e divulgação do serviço. Seu nome de usuário ou informações pessoais não serão compartilhados sem sua permissão explícita."
+      },
+      "liability": {
+        "title": "8. Limitação de Responsabilidade",
+        "content": "O Dream Oracle fornece interpretações de sonhos e imagens geradas por IA para fins de entretenimento e reflexão pessoal. Não garantimos a precisão ou confiabilidade dessas interpretações, e elas não devem ser consideradas como aconselhamento profissional. Não nos responsabilizamos por quaisquer ações tomadas com base nas interpretações ou imagens fornecidas."
+      },
+      "userConduct": {
+        "title": "9. Conduta do Usuário",
+        "content": "Você concorda em não usar o Dream Oracle para:",
+        "items": {
+          "item1": "Publicar conteúdo ilegal, abusivo, difamatório, pornográfico ou ofensivo",
+          "item2": "Assediar, ameaçar ou intimidar outros usuários",
+          "item3": "Violar direitos autorais, marcas registradas ou outros direitos de propriedade intelectual",
+          "item4": "Distribuir spam ou conteúdo comercial não solicitado",
+          "item5": "Tentar acessar contas de outros usuários ou áreas restritas do serviço"
+        }
+      },
+      "modifications": {
+        "title": "10. Modificações dos Termos",
+        "content": "Reservamo-nos o direito de modificar estes Termos de Uso a qualquer momento. Continuaremos a postar as alterações aqui e encorajamos você a revisar estes Termos periodicamente."
+      },
+      "termination": {
+        "title": "11. Rescisão",
+        "content": "Reservamo-nos o direito de encerrar ou suspender sua conta e acesso ao Dream Oracle, a nosso critério, sem aviso prévio, por qualquer motivo, incluindo, mas não se limitando a, uma violação destes Termos de Uso."
+      },
+      "applicableLaw": {
+        "title": "12. Lei Aplicável",
+        "content": "Estes Termos de Uso serão regidos e interpretados de acordo com as leis do Brasil, sem considerar suas disposições sobre conflitos de leis."
+      },
+      "contact": {
+        "title": "13. Contato",
+        "content": "Se você tiver alguma dúvida sobre estes Termos de Uso, por favor entre em contato conosco através do email: contact@dreamoracle.com"
+      }
+    },
+    "lastUpdate": "Última atualização: {date}"
+  },
+  "PrivacyPolicy": {
+    "title": "Política de Privacidade",
+    "introduction": "A sua privacidade é importante para nós. É política do Dream Oracle respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar em nosso site.",
+    "sections": {
+      "informationCollected": {
+        "title": "1. Informações que coletamos",
+        "content1": "Coletamos informações pessoais que você nos fornece diretamente, como nome, endereço de e-mail e detalhes de pagamento quando você se registra em nossa plataforma ou faz uma compra.",
+        "content2": "Também coletamos informações sobre os sonhos que você compartilha para interpretação, bem como seu histórico de uso do serviço."
+      },
+      "informationUsage": {
+        "title": "2. Como usamos suas informações",
+        "content": "Usamos as informações que coletamos para:",
+        "items": {
+          "item1": "Fornecer, manter e melhorar nossos serviços de interpretação de sonhos",
+          "item2": "Processar transações e enviar notificações relacionadas à sua conta",
+          "item3": "Responder a seus comentários, perguntas e solicitações",
+          "item4": "Enviar informações sobre recursos, serviços e promoções que possam ser de seu interesse",
+          "item5": "Monitorar e analisar tendências, uso e atividades em conexão com nosso serviço"
+        }
+      },
+      "informationSharing": {
+        "title": "3. Compartilhamento de informações",
+        "content1": "Não compartilhamos suas informações pessoais com terceiros, exceto nas seguintes circunstâncias:",
+        "items": {
+          "item1": "Com seu consentimento",
+          "item2": "Para cumprir obrigações legais",
+          "item3": "Para proteger e defender nossos direitos e propriedade",
+          "item4": "Com prestadores de serviços que nos ajudam a operar nosso negócio (estes são obrigados a manter a confidencialidade das informações)"
+        },
+        "content2": "Além disso, quando você compartilha um sonho publicamente em nossa plataforma, você nos concede permissão para usar esse conteúdo, incluindo interpretações e imagens associadas, em nossas redes sociais, como Instagram, para fins de portfólio e divulgação do serviço. Seu nome de usuário e informações pessoais não serão compartilhados nessas postagens sem sua permissão explícita."
+      },
+      "dataSecurity": {
+        "title": "4. Segurança dos dados",
+        "content": "Implementamos medidas de segurança para proteger suas informações contra acesso não autorizado, alteração, divulgação ou destruição. Isso inclui criptografia de dados, firewalls e controles de acesso físico a nossos data centers."
+      },
+      "userRights": {
+        "title": "5. Seus direitos",
+        "content": "Você tem o direito de acessar, corrigir ou excluir suas informações pessoais. Também pode optar por não receber comunicações promocionais nossas. Para exercer esses direitos, entre em contato conosco através do nosso formulário de contato."
+      },
+      "aiUsage": {
+        "title": "6. Uso de IA e dados dos sonhos",
+        "content": "Os detalhes dos sonhos que você compartilha são processados por nossa IA para fornecer interpretações. Esses dados são anonimizados e podem ser usados para melhorar nossos algoritmos de IA. Não compartilhamos os detalhes específicos dos seus sonhos com terceiros."
+      },
+      "cookies": {
+        "title": "7. Cookies e tecnologias similares",
+        "content": "Usamos cookies e tecnologias similares para melhorar a experiência do usuário, analisar o tráfego do site e personalizar o conteúdo. Você pode controlar o uso de cookies através das configurações do seu navegador."
+      },
+      "policyChanges": {
+        "title": "8. Alterações nesta política",
+        "content": "Podemos atualizar nossa Política de Privacidade de tempos em tempos. Notificaremos você sobre quaisquer alterações publicando a nova Política de Privacidade nesta página."
+      },
+      "contact": {
+        "title": "9. Contato",
+        "content": "Se você tiver alguma dúvida sobre esta Política de Privacidade, por favor entre em contato conosco através do nosso formulário de contato."
+      }
+    },
+    "lastUpdate": "Última atualização: {date}"
+  },
+  "LoginCard": {
+    "title": "Bem-vindo ao Dream Oracle",
+    "description": "Desvende os mistérios dos seus sonhos",
+    "logoAlt": "Logo do Dream Oracle",
+    "loginButton": "Entrar com Google",
+    "termsAndPrivacy": "Ao fazer login, você concorda com nossos <terms>Termos de Uso</terms> e <privacy>Política de Privacidade</privacy>."
+  }
+}

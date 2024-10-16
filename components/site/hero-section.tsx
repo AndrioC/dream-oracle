@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import bgImage from '@/assets/bg.png';
-import Link from 'next/link';
 
 export default function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const t = useTranslations('HeroSection');
 
   useEffect(() => {
     const updateMousePosition = (ev: MouseEvent) => {
@@ -26,7 +28,7 @@ export default function HeroSection() {
       <div className="absolute inset-0">
         <Image
           src={bgImage}
-          alt="Fundo onírico"
+          alt={t('imageAlt')}
           layout="fill"
           objectFit="cover"
           quality={100}
@@ -53,7 +55,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          Desvende os Mistérios dos Seus Sonhos
+          {t('title')}
         </motion.h1>
         <motion.p
           className="text-xl sm:text-2xl md:text-3xl mb-10 text-purple-200"
@@ -61,7 +63,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          Interpretação de sonhos por IA e geração de imagens únicas
+          {t('subtitle')}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -72,7 +74,7 @@ export default function HeroSection() {
             href="/login"
             className="inline-flex items-center px-8 py-4 border-2 border-purple-300 text-lg font-medium rounded-full text-white bg-purple-600 hover:bg-purple-700 transition duration-300 ease-in-out transform hover:scale-105"
           >
-            Comece agora
+            {t('ctaButton')}
             <Sparkles className="ml-2 -mr-1 h-5 w-5" />
           </Link>
         </motion.div>
