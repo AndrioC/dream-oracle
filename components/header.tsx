@@ -19,7 +19,9 @@ import { useSession } from 'next-auth/react';
 import coinImage from '@/assets/coin-icon.svg';
 import Image from 'next/image';
 import NotificationDropdown from './notification-dropdown';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 async function fetchCredits() {
   const { data } = await axios.get('/api/users/credits');
@@ -27,6 +29,7 @@ async function fetchCredits() {
 }
 
 export default function Header() {
+  const t = useTranslations('header');
   const { data: session } = useSession();
   const {
     data: credits,
@@ -48,20 +51,26 @@ export default function Header() {
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center space-x-4">
             <Link href="/" className="text-2xl font-bold text-primary">
-              Dream Oracle
+              {t('title')}
             </Link>
             <nav className="hidden md:flex space-x-6 text-sm font-medium">
               <Link
                 href="/dreams"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                Sonhos
+                {t('nav.myDreams')}
+              </Link>
+              <Link
+                href="/feed"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                {t('nav.feed')}
               </Link>
               <Link
                 href="/dreams/oracle"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                Oráculo
+                {t('nav.oracle')}
               </Link>
             </nav>
           </div>
@@ -70,10 +79,10 @@ export default function Header() {
               <Image src={coinImage} alt="credits" width={20} height={20} />
               <span className="text-sm font-medium text-muted-foreground">
                 {isLoading
-                  ? 'Carregando...'
+                  ? t('credits.loading')
                   : isError
-                    ? 'Erro'
-                    : `${credits} créditos`}
+                    ? t('credits.error')
+                    : t('credits.value', { credits })}
               </span>
             </div>
             <NotificationDropdown />
@@ -89,7 +98,7 @@ export default function Header() {
                   <Avatar className="h-10 w-10">
                     <AvatarImage
                       src={session?.user?.image || ''}
-                      alt={session?.user?.name || 'User'}
+                      alt={session?.user?.name || t('userDropdown.defaultUser')}
                     />
                     <AvatarFallback>
                       {session?.user?.name?.[0] || 'U'}
@@ -101,17 +110,17 @@ export default function Header() {
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">
-                      {session?.user?.name || 'Usuário'}
+                      {session?.user?.name || t('userDropdown.defaultUser')}
                     </p>
                     <p className="text-xs leading-none text-muted-foreground">
-                      {session?.user?.email || 'usuario@exemplo.com'}
+                      {session?.user?.email || t('userDropdown.defaultEmail')}
                     </p>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onSelect={closeDropdown}>
                   <Link href="/settings" onClick={closeDropdown}>
-                    Configurações
+                    {t('userDropdown.settings')}
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
@@ -125,33 +134,60 @@ export default function Header() {
               className="md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              <Menu className="h-6 w-6" />
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </Button>
           </div>
         </div>
       </div>
-      <div
-        className={`md:hidden ${
-          isMobileMenuOpen ? 'block' : 'hidden'
-        } transition-all duration-300 ease-in-out`}
-      >
-        <nav className="flex flex-col space-y-4 bg-muted px-4 py-2">
-          <Link
-            href="/dreams"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-muted-foreground hover:text-primary transition-colors"
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="md:hidden"
           >
-            Sonhos
-          </Link>
-          <Link
-            href="/dreams/oracle"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
-            Oráculo
-          </Link>
-        </nav>
-      </div>
+            <nav className="flex flex-col space-y-4 bg-muted px-4 py-4">
+              <Link
+                href="/dreams"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-muted-foreground hover:text-primary transition-colors text-lg font-medium"
+              >
+                {t('nav.myDreams')}
+              </Link>
+              <Link
+                href="/feed"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-muted-foreground hover:text-primary transition-colors text-lg font-medium"
+              >
+                {t('nav.feed')}
+              </Link>
+              <Link
+                href="/dreams/oracle"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-muted-foreground hover:text-primary transition-colors text-lg font-medium"
+              >
+                {t('nav.oracle')}
+              </Link>
+              <div className="flex items-center space-x-2 bg-background rounded-full px-4 py-2 w-fit">
+                <Image src={coinImage} alt="credits" width={20} height={20} />
+                <span className="text-sm font-medium text-muted-foreground">
+                  {isLoading
+                    ? t('credits.loading')
+                    : isError
+                      ? t('credits.error')
+                      : t('credits.value', { credits })}
+                </span>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

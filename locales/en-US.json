@@ -7,16 +7,161 @@
     "home": "Home",
     "dreams": "Dreams"
   },
-  "settings": {
-    "language": "Language",
-    "theme": "Theme"
-  },
   "dreamFeed": {
-    "loading": "Loading dreams...",
+    "loading": "Loading...",
     "error": "Error loading dreams.",
-    "by": "by",
-    "anonymous": "Anonymous",
-    "expand": "Expand",
-    "close": "Close"
+    "noDreams": {
+      "title": "No dreams found",
+      "message": "It seems there are no dreams registered yet. Be the first to",
+      "my-dream-message": "It seems you haven't registered any dreams yet.",
+      "my-dream-share": "Start now",
+      "share": "share",
+      "yours": "yours!"
+    }
+  },
+  "header": {
+    "title": "Dream Oracle",
+    "nav": {
+      "myDreams": "My Dreams",
+      "feed": "Feed",
+      "oracle": "Oracle"
+    },
+    "credits": {
+      "loading": "Loading...",
+      "error": "Error",
+      "value": "{credits} credits"
+    },
+    "userDropdown": {
+      "settings": "Settings",
+      "defaultUser": "User",
+      "defaultEmail": "user@example.com"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllAsRead": "Mark all as read",
+    "loading": "Loading notifications...",
+    "error": "Error loading notifications",
+    "empty": "No notifications",
+    "markAsRead": "Mark as read",
+    "types": {
+      "like": "Someone liked your dream \"{dreamTitle}\"",
+      "comment": "Someone commented on your dream \"{dreamTitle}\"",
+      "default": "New activity on your dream \"{dreamTitle}\""
+    }
+  },
+  "settings": {
+    "title": "User Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "selectLanguage": "Select language",
+    "selectTheme": "Select theme",
+    "portuguese": "Portuguese (Brazil)",
+    "english": "English",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "loading": "Loading settings...",
+    "notFound": "Settings not found",
+    "updateSuccess": "Settings updated successfully!",
+    "updateError": "Error updating settings. Please try again."
+  },
+  "imageTypes": {
+    "abstract": "Abstract",
+    "anime": "Anime",
+    "watercolor": "Watercolor",
+    "artNouveau": "Art Nouveau",
+    "cartoon": "Cartoon",
+    "cyberpunk": "Cyberpunk",
+    "pixar": "Pixar Style",
+    "vanGogh": "Van Gogh Style",
+    "medievalFantasy": "Medieval Fantasy",
+    "minimalist": "Minimalist",
+    "oil": "Oil on Canvas",
+    "pixelArt": "Pixel Art",
+    "popArt": "Pop Art",
+    "realistic": "Realistic",
+    "surrealist": "Surrealist"
+  },
+  "dreamPage": {
+    "public": "Public",
+    "private": "Private",
+    "dreamDescription": "Dream Description",
+    "interpretationAndImage": "Dream Interpretation and Image",
+    "dreamInterpretation": "Dream Interpretation",
+    "dreamImage": "Dream Image",
+    "interpretation": "Interpretation",
+    "style": "Style",
+    "dreamImageAlt": "Representative image of the dream",
+    "error": "Error",
+    "errorMessage": "An error occurred while loading the dream. Please try again later.",
+    "imageTypes": {
+      "abstract": "Abstract",
+      "anime": "Anime",
+      "watercolor": "Watercolor",
+      "artNouveau": "Art Nouveau",
+      "cartoon": "Cartoon",
+      "cyberpunk": "Cyberpunk",
+      "pixar": "Pixar Style",
+      "vanGogh": "Van Gogh Style",
+      "medievalFantasy": "Medieval Fantasy",
+      "minimalist": "Minimalist",
+      "oil": "Oil on Canvas",
+      "pixelArt": "Pixel Art",
+      "popArt": "Pop Art",
+      "realistic": "Realistic",
+      "surrealist": "Surrealist"
+    }
+  },
+  "dreamForm": {
+    "registerDream": "Register Your Dream",
+    "describeDream": "Describe your dream and let us interpret it for you",
+    "dreamTitle": "Dream Title",
+    "dreamTitlePlaceholder": "E.g., Flying over the clouds",
+    "dreamDescription": "Dream Description",
+    "dreamDescriptionPlaceholder": "Describe your dream in detail. The more information you provide, the better the interpretation will be.",
+    "dreamDate": "Dream Date",
+    "selectDate": "Select a date",
+    "dreamVisibility": "Dream Visibility",
+    "clickForMoreInfo": "Click for more information about visibility",
+    "public": "Public",
+    "private": "Private",
+    "interpretDream": "Interpret dream",
+    "interpretDreamSubLabel": "Use 1 credit to get a detailed interpretation",
+    "generateImage": "Generate image",
+    "generateImageSubLabel": "Use 1 credit to create a visual representation of your dream",
+    "imageStyle": "Image Style",
+    "chooseImageStyle": "Choose the image style",
+    "savingDream": "Saving Dream...",
+    "processingDream": "Processing Your Dream",
+    "interpretingDream": "Interpreting the dream...",
+    "generatingDreamImage": "Generating dream image...",
+    "pleaseWait": "Please wait while we process your dream. This may take a few moments.",
+    "dreamCreatedSuccess": "Dream created successfully! {creditsUsed} credit(s) used.",
+    "interpretationGenerated": "Interpretation generated.",
+    "imageGenerated": "Image generated.",
+    "failedToSaveDream": "Failed to save the dream",
+    "errorCreatingDream": "Error creating dream",
+    "privateDream": "Private Dream",
+    "privateDreamDescription": "Only you will have access to this dream. It will not be visible to other users or on the public wall.",
+    "publicDream": "Public Dream",
+    "publicDreamDescription": "This dream will be posted on your wall and all users will have access to it. It's a great way to share your dream experiences with the community.",
+    "imageTypes": {
+      "abstract": "Abstract",
+      "anime": "Anime",
+      "watercolor": "Watercolor",
+      "artNouveau": "Art Nouveau",
+      "cartoon": "Cartoon",
+      "cyberpunk": "Cyberpunk",
+      "pixar": "Pixar Style",
+      "vanGogh": "Van Gogh Style",
+      "medievalFantasy": "Medieval Fantasy",
+      "minimalist": "Minimalist",
+      "oil": "Oil on Canvas",
+      "pixelArt": "Pixel Art",
+      "popArt": "Pop Art",
+      "realistic": "Realistic",
+      "surrealist": "Surrealist"
+    }
   }
 }

@@ -39,14 +39,17 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { enUS, ptBR } from 'date-fns/locale';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { imageTypes } from '@/utils/image-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { encrypt } from '@/utils/crypto';
 import { cn } from '../lib/utils';
+import { useTheme } from 'next-themes';
+import { useTranslations } from 'next-intl';
+import { useSession } from 'next-auth/react';
 
 interface DreamData {
   title: string;
@@ -58,7 +61,23 @@ interface DreamData {
   imageType: string;
 }
 
+interface UserSettings {
+  language: string;
+}
+
+const fetchUserSettings = async (): Promise<UserSettings> => {
+  const response = await fetch('/api/userSettings');
+  return response.json();
+};
+
 export default function DreamForm() {
+  const t = useTranslations('dreamForm');
+  const { data: session } = useSession();
+  const { data: userSettings } = useQuery<UserSettings>({
+    queryKey: ['userSettings'],
+    queryFn: fetchUserSettings,
+    enabled: !!session,
+  });
   const [formData, setFormData] = useState<DreamData>({
     title: '',
     description: '',
@@ -66,7 +85,7 @@ export default function DreamForm() {
     isPublic: false,
     interpretDream: false,
     generateImage: false,
-    imageType: 'abstrato',
+    imageType: 'abstract',
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVisibilityDialogOpen, setIsVisibilityDialogOpen] = useState(false);
@@ -83,20 +102,20 @@ export default function DreamForm() {
       queryClient.invalidateQueries({ queryKey: ['credits'] });
       setIsModalOpen(false);
 
-      let message = `Sonho criado com sucesso! ${creditsUsed} crédito(s) usado(s).`;
-      if (interpretation) message += ' Interpretação gerada.';
-      if (imageGenerated) message += ' Imagem gerada.';
+      let message = t('dreamCreatedSuccess', { creditsUsed });
+      if (interpretation) message += ' ' + t('interpretationGenerated');
+      if (imageGenerated) message += ' ' + t('imageGenerated');
 
       toast.success(message, { autoClose: 5000, position: 'top-center' });
       router.push(`/dreams/${encrypt(String(dream.id))}`);
     },
     onError: (error: Error | AxiosError) => {
-      console.error('Falha ao salvar o sonho', error);
+      console.error(t('failedToSaveDream'), error);
       setIsModalOpen(false);
       const errorMessage =
         axios.isAxiosError(error) && error.response
           ? error.response.data.error
-          : 'Erro ao criar sonho';
+          : t('errorCreatingDream');
       toast.error(errorMessage, { autoClose: 5000, position: 'top-center' });
     },
   });
@@ -144,38 +163,39 @@ export default function DreamForm() {
         <div className="text-center">
           <MoonIcon className="mx-auto h-12 w-12 text-primary" />
           <h2 className="mt-4 text-3xl font-extrabold text-foreground">
-            Registre seu Sonho
+            {t('registerDream')}
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Descreva seu sonho e deixe-nos interpretá-lo para você
+            {t('describeDream')}
           </p>
         </div>
 
         <InputField
           id="title"
-          label="Título do Sonho"
+          label={t('dreamTitle')}
           value={formData.title}
           onChange={handleInputChange}
-          placeholder="Ex: Voando sobre as nuvens"
+          placeholder={t('dreamTitlePlaceholder')}
         />
 
         <TextareaField
           id="description"
-          label="Descrição do Sonho"
+          label={t('dreamDescription')}
           value={formData.description}
           onChange={handleInputChange}
-          placeholder="Descreva seu sonho em detalhes. Quanto mais informações você fornecer, melhor será a interpretação."
+          placeholder={t('dreamDescriptionPlaceholder')}
         />
 
         <DatePicker
           date={new Date(formData.date)}
           onSelect={handleDateChange}
+          userSettings={userSettings}
         />
 
         <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
           <div className="flex items-center space-x-2">
             <span className="text-sm font-medium text-foreground">
-              Visibilidade do Sonho
+              {t('dreamVisibility')}
             </span>
             <TooltipProvider>
               <Tooltip>
@@ -191,7 +211,7 @@ export default function DreamForm() {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Clique para mais informações sobre visibilidade</p>
+                  <p>{t('clickForMoreInfo')}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -199,7 +219,7 @@ export default function DreamForm() {
           <ToggleSwitch
             checked={formData.isPublic}
             onCheckedChange={handleCheckboxChange('isPublic')}
-            label={formData.isPublic ? 'Público' : 'Privado'}
+            label={formData.isPublic ? t('public') : t('private')}
             icon={
               formData.isPublic ? (
                 <EyeIcon className="h-4 w-4" />
@@ -213,8 +233,8 @@ export default function DreamForm() {
         <div className="space-y-4 bg-muted p-6 rounded-lg">
           <CheckboxField
             id="interpretDream"
-            label="Interpretar sonho"
-            subLabel="Use 1 crédito para obter uma interpretação detalhada"
+            label={t('interpretDream')}
+            subLabel={t('interpretDreamSubLabel')}
             checked={formData.interpretDream}
             onChange={handleCheckboxChange('interpretDream')}
             icon={<BrainIcon className="h-5 w-5 text-primary" />}
@@ -222,8 +242,8 @@ export default function DreamForm() {
 
           <CheckboxField
             id="generateImage"
-            label="Gerar imagem"
-            subLabel="Use 1 crédito para criar uma representação visual do seu sonho"
+            label={t('generateImage')}
+            subLabel={t('generateImageSubLabel')}
             checked={formData.generateImage}
             onChange={handleCheckboxChange('generateImage')}
             icon={<ImageIcon className="h-5 w-5 text-primary" />}
@@ -249,16 +269,16 @@ export default function DreamForm() {
 
         <Button
           type="submit"
-          className="w-full py-3 bg-primary text-primary-foreground hover:bg-primary/90 font-bold transition-all duration-300 ease-in-out text-lg rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 bg-blue-600 hover:bg-blue-800"
+          className="w-full py-3 bg-primary text-primary-foreground hover:bg-primary/90 font-medium transition-all duration-300 ease-in-out text-lg rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 bg-blue-600 hover:bg-blue-800 text-white"
           disabled={!isFormValid || createDreamMutation.isPending}
         >
           {createDreamMutation.isPending ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Salvando Sonho...
+              {t('savingDream')}
             </>
           ) : (
-            'Registrar Sonho'
+            t('registerDream')
           )}
         </Button>
       </form>
@@ -275,19 +295,16 @@ export default function DreamForm() {
       >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Visibilidade do Sonho</DialogTitle>
+            <DialogTitle>{t('dreamVisibility')}</DialogTitle>
           </DialogHeader>
           <div className="py-4">
-            <h3 className="text-lg font-semibold mb-2">Sonho Privado</h3>
+            <h3 className="text-lg font-semibold mb-2">{t('privateDream')}</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Apenas você terá acesso a este sonho. Ele não será visível para
-              outros usuários ou no mural público.
+              {t('privateDreamDescription')}
             </p>
-            <h3 className="text-lg font-semibold mb-2">Sonho Público</h3>
+            <h3 className="text-lg font-semibold mb-2">{t('publicDream')}</h3>
             <p className="text-sm text-muted-foreground">
-              Este sonho será postado no seu mural e todos os usuários terão
-              acesso a ele. É uma ótima maneira de compartilhar suas
-              experiências oníricas com a comunidade.
+              {t('publicDreamDescription')}
             </p>
           </div>
         </DialogContent>
@@ -296,7 +313,7 @@ export default function DreamForm() {
   );
 }
 
-export function InputField({
+function InputField({
   id,
   label,
   value,
@@ -331,7 +348,7 @@ export function InputField({
   );
 }
 
-export function TextareaField({
+function TextareaField({
   id,
   label,
   value,
@@ -369,14 +386,20 @@ export function TextareaField({
 function DatePicker({
   date,
   onSelect,
+  userSettings,
 }: {
   date: Date;
   onSelect: (date: Date | undefined) => void;
+  userSettings: UserSettings | undefined;
 }) {
+  const { theme } = useTheme();
+  const t = useTranslations('dreamForm');
+  const locale = userSettings?.language === 'en-US' ? enUS : ptBR;
+
   return (
     <div>
       <label className="block text-sm font-medium text-foreground mb-2">
-        Data do Sonho
+        {t('dreamDate')}
       </label>
       <Popover>
         <PopoverTrigger asChild>
@@ -384,14 +407,15 @@ function DatePicker({
             variant="outline"
             className={cn(
               'w-full justify-start text-left font-normal',
-              !date && 'text-muted-foreground'
+              !date && 'text-muted-foreground',
+              theme === 'dark' && 'border border-input'
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {date ? (
-              format(date, 'PPP', { locale: ptBR })
+              format(date, 'PPP', { locale })
             ) : (
-              <span>Selecione uma data</span>
+              <span>{t('selectDate')}</span>
             )}
           </Button>
         </PopoverTrigger>
@@ -401,7 +425,7 @@ function DatePicker({
             selected={date}
             onSelect={onSelect}
             initialFocus
-            locale={ptBR}
+            locale={locale}
           />
         </PopoverContent>
       </Popover>
@@ -416,22 +440,26 @@ function ImageTypeSelect({
   value: string;
   onChange: (value: string) => void;
 }) {
+  const { theme } = useTheme();
+  const t = useTranslations('dreamForm');
   return (
     <div className="mt-4">
       <label
         htmlFor="imageType"
         className="block text-sm font-medium text-foreground mb-2"
       >
-        Estilo da Imagem
+        {t('imageStyle')}
       </label>
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Escolha o estilo da imagem" />
+        <SelectTrigger
+          className={cn('w-full', theme === 'dark' && 'border border-gray-600')}
+        >
+          <SelectValue placeholder={t('chooseImageStyle')} />
         </SelectTrigger>
         <SelectContent>
           {Object.entries(imageTypes).map(([value, label]) => (
             <SelectItem key={value} value={value}>
-              {label}
+              {t(`imageTypes.${value}`, { defaultValue: label })}
             </SelectItem>
           ))}
         </SelectContent>
@@ -449,6 +477,7 @@ function ProcessingModal({
   interpretDream: boolean;
   generateImage: boolean;
 }) {
+  const t = useTranslations('dreamForm');
   return (
     <AnimatePresence>
       {isOpen && (
@@ -465,25 +494,24 @@ function ProcessingModal({
             className="bg-card p-8 rounded-xl shadow-xl max-w-md w-full border border-border"
           >
             <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
-              Processando seu Sonho
+              {t('processingDream')}
             </h2>
             <div className="space-y-6">
               {interpretDream && (
                 <div className="flex items-center space-x-4 bg-muted p-4 rounded-lg">
                   <Loader2 className="animate-spin h-6 w-6 text-primary" />
-                  <p className="text-foreground">Interpretando o sonho...</p>
+                  <p className="text-foreground">{t('interpretingDream')}</p>
                 </div>
               )}
               {generateImage && (
                 <div className="flex items-center space-x-4 bg-muted p-4 rounded-lg">
                   <Loader2 className="animate-spin h-6 w-6 text-primary" />
-                  <p className="text-foreground">Gerando imagem do sonho...</p>
+                  <p className="text-foreground">{t('generatingDreamImage')}</p>
                 </div>
               )}
             </div>
             <p className="mt-6 text-sm text-muted-foreground text-center">
-              Por favor, aguarde enquanto processamos seu sonho. Isso pode levar
-              alguns instantes.
+              {t('pleaseWait')}
             </p>
           </motion.div>
         </motion.div>

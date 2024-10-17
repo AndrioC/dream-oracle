@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Header from '@/components/header';
 import 'react-toastify/dist/ReactToastify.css';
+
 import { auth } from '@/auth';
 
 const geistSans = localFont({
@@ -19,8 +20,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Livro de Sonhos',
-  description: 'Registre e explore seus sonhos',
+  title: 'Dream Oracle - AI Dream Interpretation',
+  description:
+    'Discover the meaning of your dreams with AI interpretation and unique image generation.',
 };
 
 async function AuthenticatedHeader() {

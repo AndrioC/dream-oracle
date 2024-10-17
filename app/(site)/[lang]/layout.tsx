@@ -29,7 +29,6 @@ async function getMetadata(lang: string): Promise<Metadata> {
     openGraph: {
       title: messages.metadata.ogTitle,
       description: messages.metadata.ogDescription,
-      images: ['/og-image.jpg'],
     },
   };
 }

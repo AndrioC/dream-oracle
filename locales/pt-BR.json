@@ -7,16 +7,161 @@
     "home": "Início",
     "dreams": "Sonhos"
   },
-  "settings": {
-    "language": "Idioma",
-    "theme": "Tema"
-  },
   "dreamFeed": {
-    "loading": "Carregando sonhos...",
+    "loading": "Carregando...",
     "error": "Erro ao carregar os sonhos.",
-    "by": "por",
-    "anonymous": "Anônimo",
-    "expand": "Expandir",
-    "close": "Fechar"
+    "noDreams": {
+      "title": "Nenhum sonho encontrado",
+      "message": "Parece que ainda não há sonhos cadastrados. Seja o primeiro a",
+      "my-dream-message": "Parece que você ainda não cadastrou seus sonhos.",
+      "my-dream-share": "Comece agora mesmo",
+      "share": "compartilhar",
+      "yours": "o seu!"
+    }
+  },
+  "header": {
+    "title": "Dream Oracle",
+    "nav": {
+      "myDreams": "Meus sonhos",
+      "feed": "Feed",
+      "oracle": "Oráculo"
+    },
+    "credits": {
+      "loading": "Carregando...",
+      "error": "Erro",
+      "value": "{credits} créditos"
+    },
+    "userDropdown": {
+      "settings": "Configurações",
+      "defaultUser": "Usuário",
+      "defaultEmail": "usuario@exemplo.com"
+    }
+  },
+  "notifications": {
+    "title": "Notificações",
+    "markAllAsRead": "Marcar todas como lidas",
+    "loading": "Carregando notificações...",
+    "error": "Erro ao carregar notificações",
+    "empty": "Nenhuma notificação",
+    "markAsRead": "Marcar como lida",
+    "types": {
+      "like": "Alguém curtiu seu sonho \"{dreamTitle}\"",
+      "comment": "Alguém comentou em seu sonho \"{dreamTitle}\"",
+      "default": "Nova atividade em seu sonho \"{dreamTitle}\""
+    }
+  },
+  "settings": {
+    "title": "Configurações do Usuário",
+    "language": "Idioma",
+    "theme": "Tema",
+    "selectLanguage": "Selecione o idioma",
+    "selectTheme": "Selecione o tema",
+    "portuguese": "Português (Brasil)",
+    "english": "Inglês",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema",
+    "loading": "Carregando configurações...",
+    "notFound": "Configurações não encontradas",
+    "updateSuccess": "Configurações atualizadas com sucesso!",
+    "updateError": "Erro ao atualizar as configurações. Tente novamente."
+  },
+  "imageTypes": {
+    "abstract": "Abstrato",
+    "anime": "Anime",
+    "watercolor": "Aquarela",
+    "artNouveau": "Art Nouveau",
+    "cartoon": "Cartoon",
+    "cyberpunk": "Cyberpunk",
+    "pixar": "Estilo Pixar",
+    "vanGogh": "Estilo Van Gogh",
+    "medievalFantasy": "Fantasia Medieval",
+    "minimalist": "Minimalista",
+    "oil": "Óleo sobre tela",
+    "pixelArt": "Pixel Art",
+    "popArt": "Pop Art",
+    "realistic": "Realista",
+    "surrealist": "Surrealista"
+  },
+  "dreamPage": {
+    "public": "Público",
+    "private": "Privado",
+    "dreamDescription": "Descrição do Sonho",
+    "interpretationAndImage": "Interpretação e Imagem do Sonho",
+    "dreamInterpretation": "Interpretação do Sonho",
+    "dreamImage": "Imagem do Sonho",
+    "interpretation": "Interpretação",
+    "style": "Estilo",
+    "dreamImageAlt": "Imagem representativa do sonho",
+    "error": "Erro",
+    "errorMessage": "Ocorreu um erro ao carregar o sonho. Por favor, tente novamente mais tarde.",
+    "imageTypes": {
+      "abstract": "Abstrato",
+      "anime": "Anime",
+      "watercolor": "Aquarela",
+      "artNouveau": "Art Nouveau",
+      "cartoon": "Cartoon",
+      "cyberpunk": "Cyberpunk",
+      "pixar": "Estilo Pixar",
+      "vanGogh": "Estilo Van Gogh",
+      "medievalFantasy": "Fantasia Medieval",
+      "minimalist": "Minimalista",
+      "oil": "Óleo sobre tela",
+      "pixelArt": "Pixel Art",
+      "popArt": "Pop Art",
+      "realistic": "Realista",
+      "surrealist": "Surrealista"
+    }
+  },
+  "dreamForm": {
+    "registerDream": "Registre seu Sonho",
+    "describeDream": "Descreva seu sonho e deixe-nos interpretá-lo para você",
+    "dreamTitle": "Título do Sonho",
+    "dreamTitlePlaceholder": "Ex: Voando sobre as nuvens",
+    "dreamDescription": "Descrição do Sonho",
+    "dreamDescriptionPlaceholder": "Descreva seu sonho em detalhes. Quanto mais informações você fornecer, melhor será a interpretação.",
+    "dreamDate": "Data do Sonho",
+    "selectDate": "Selecione uma data",
+    "dreamVisibility": "Visibilidade do Sonho",
+    "clickForMoreInfo": "Clique para mais informações sobre visibilidade",
+    "public": "Público",
+    "private": "Privado",
+    "interpretDream": "Interpretar sonho",
+    "interpretDreamSubLabel": "Use 1 crédito para obter uma interpretação detalhada",
+    "generateImage": "Gerar imagem",
+    "generateImageSubLabel": "Use 1 crédito para criar uma representação visual do seu sonho",
+    "imageStyle": "Estilo da Imagem",
+    "chooseImageStyle": "Escolha o estilo da imagem",
+    "savingDream": "Salvando Sonho...",
+    "processingDream": "Processando seu Sonho",
+    "interpretingDream": "Interpretando o sonho...",
+    "generatingDreamImage": "Gerando imagem do sonho...",
+    "pleaseWait": "Por favor, aguarde enquanto processamos seu sonho. Isso pode levar alguns instantes.",
+    "dreamCreatedSuccess": "Sonho criado com sucesso! {creditsUsed} crédito(s) usado(s).",
+    "interpretationGenerated": "Interpretação gerada.",
+    "imageGenerated": "Imagem gerada.",
+    "failedToSaveDream": "Falha ao salvar o sonho",
+    "errorCreatingDream": "Erro ao criar sonho",
+    "privateDream": "Sonho Privado",
+    "privateDreamDescription": "Apenas você terá acesso a este sonho. Ele não será visível para outros usuários ou no mural público.",
+    "publicDream": "Sonho Público",
+    "publicDreamDescription": "Este sonho será postado no seu mural e todos os usuários terão acesso a ele. É uma ótima maneira de compartilhar suas experiências oníricas com a comunidade.",
+    "imageTypes": {
+      "abstract": "Abstrato",
+      "anime": "Anime",
+      "watercolor": "Aquarela",
+      "artNouveau": "Art Nouveau",
+      "cartoon": "Cartoon",
+      "cyberpunk": "Cyberpunk",
+      "pixar": "Estilo Pixar",
+      "vanGogh": "Estilo Van Gogh",
+      "medievalFantasy": "Fantasia Medieval",
+      "minimalist": "Minimalista",
+      "oil": "Óleo sobre tela",
+      "pixelArt": "Pixel Art",
+      "popArt": "Pop Art",
+      "realistic": "Realista",
+      "surrealist": "Surrealista"
+    }
   }
 }

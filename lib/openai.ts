@@ -43,15 +43,28 @@ async function translateAndEnhancePrompt(
       {
         role: 'system',
         content:
-          'Você é um especialista em criar prompts detalhados para geração de imagens por IA. Sua tarefa é traduzir o texto fornecido para o inglês, aprimorá-lo com detalhes vívidos e criar um prompt abrangente que inclua TODOS os elementos principais da descrição original. É crucial que cada aspecto significativo do sonho seja representado na imagem final. Incorpore o estilo de imagem especificado de forma integrada. Concentre-se na clareza, coerência e evite elementos que possam levar a distorções ou interpretações errôneas pelo modelo de geração de imagens.',
+          "You are an expert in interpreting dreams and creating precise prompts for AI image generation. Your task is to translate the provided dream description into English and create a prompt that vividly captures the essence and main elements of the dream, while explicitly incorporating the specified image style. Blend the dream's key imagery, emotions, and symbols with the characteristics of the given art style to create a cohesive and visually striking description.",
       },
       {
         role: 'user',
-        content: `Descrição original: "${text}". Estilo de imagem: ${imageType}. Por favor, forneça um prompt detalhado e coerente que resultará em uma imagem de alta qualidade e sem distorções. Certifique-se de que TODOS os elementos principais da descrição original do sonho sejam incluídos e claramente descritos no prompt. Por exemplo, se o sonho menciona tanto aviões quanto ninjas, certifique-se de que o prompt gerará uma imagem contendo AMBOS aviões E ninjas, não apenas um ou outro.`,
+        content: `Dream description: "${text}". 
+  Image style: ${imageType}. 
+  
+  Please create a detailed and evocative prompt based on this dream description and image style. Your prompt should:
+  1. Begin with a clear statement of the image style, e.g., "In the style of [image style]," or "A [image style] depiction of..."
+  2. Accurately reflect the main elements, atmosphere, and emotions of the described dream.
+  3. Translate any non-English elements into English.
+  4. Seamlessly integrate the specified image style with the dream's content, describing how key elements of the dream would be represented in this style.
+  5. Use language and descriptors that are characteristic of the specified art style.
+  6. Avoid adding excessive details not present in the original description.
+  7. Focus on clarity and precision to prevent misinterpretations by the image generation model.
+  8. Aim for a coherent and vivid description that will result in a high-quality, dream-like image in the specified style.
+  
+  Ensure your prompt stays true to the dreamer's vision while fully embodying the chosen artistic style, making it suitable for AI image generation.`,
       },
     ],
     temperature: 0.7,
-    max_tokens: 300,
+    max_tokens: 250,
   });
 
   return response.choices[0].message.content || text;
@@ -64,53 +77,64 @@ export async function generateDreamImage(
   let stylePrompt = '';
 
   switch (imageType) {
-    case 'abstrato':
-      stylePrompt = 'an abstract painting';
+    case 'abstract':
+      stylePrompt = 'an abstract painting with bold shapes and colors';
       break;
     case 'anime':
-      stylePrompt = 'a Japanese anime scene';
+      stylePrompt =
+        'a Japanese anime scene with vibrant colors and expressive characters';
       break;
-    case 'aquarela':
-      stylePrompt = 'a soft and ethereal watercolor painting';
+    case 'watercolor':
+      stylePrompt =
+        'a soft and ethereal watercolor painting with delicate brush strokes';
       break;
     case 'art-nouveau':
-      stylePrompt = 'an Art Nouveau style illustration';
+      stylePrompt =
+        'an Art Nouveau piece with ornate, nature-inspired designs and flowing lines';
       break;
     case 'cartoon':
-      stylePrompt = 'a colorful cartoon drawing';
+      stylePrompt =
+        'a colorful cartoon scene with exaggerated features and lively expressions';
       break;
     case 'cyberpunk':
       stylePrompt =
-        'a futuristic cyberpunk scene with neons and advanced technology';
+        'a futuristic cyberpunk scene with neon lights, advanced technology, and urban dystopia';
       break;
     case 'pixar':
-      stylePrompt = 'a 3D scene in the style of Pixar movies';
+      stylePrompt =
+        'a Pixar-style 3D animated scene with vibrant colors and charming characters';
       break;
     case 'van-gogh':
       stylePrompt =
-        'a post-impressionist painting in the style of Vincent van Gogh';
+        'a post-impressionist painting in the style of Van Gogh with bold brushstrokes and vivid colors';
       break;
-    case 'fantasia-medieval':
-      stylePrompt = 'a medieval fantasy illustration';
-      break;
-    case 'minimalista':
+    case 'medieval-fantasy':
       stylePrompt =
-        'a minimalist illustration with simple shapes and solid colors';
+        'a medieval fantasy scene with castles, mythical creatures, and magical elements';
       break;
-    case 'oleo':
-      stylePrompt = 'an oil painting with rich textures';
+    case 'minimalist':
+      stylePrompt =
+        'a minimalist design with simple shapes, limited color palette, and lots of negative space';
+      break;
+    case 'oil':
+      stylePrompt =
+        'a richly textured oil painting with deep colors and visible brush strokes';
       break;
     case 'pixel-art':
-      stylePrompt = 'a 16-bit pixel art image';
+      stylePrompt =
+        'a retro-style pixel art scene with distinct, blocky pixels and limited color palette';
       break;
     case 'pop-art':
-      stylePrompt = 'a pop art piece in the style of Andy Warhol';
+      stylePrompt =
+        'a bold pop art piece inspired by Roy Lichtenstein with bright colors and comic-like elements';
       break;
-    case 'realista':
-      stylePrompt = 'a photorealistic image';
+    case 'realistic':
+      stylePrompt =
+        'a highly detailed, photorealistic image with accurate lighting and textures';
       break;
-    case 'surrealista':
-      stylePrompt = 'a surrealist image in the style of Salvador Dalí';
+    case 'surrealist':
+      stylePrompt =
+        'a surrealist painting in the style of Salvador Dalí with dreamlike and impossible elements';
       break;
     default:
       stylePrompt = 'a surreal and artistic image';
@@ -120,6 +144,9 @@ export async function generateDreamImage(
     dreamDescription,
     stylePrompt
   );
+
+  console.log('Enhanced prompt:', enhancedPrompt);
+  console.log('stylePrompt:', stylePrompt);
 
   const response = await openai.images.generate({
     model: 'dall-e-3',

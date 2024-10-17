@@ -3,6 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
 import {
   CalendarIcon,
   EyeIcon,
@@ -17,8 +18,11 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { format, parseISO } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
-import { ptBR } from 'date-fns/locale';
+import { enUS, ptBR } from 'date-fns/locale';
 import { imageTypes } from '@/utils/image-types';
+import { useTranslations } from 'next-intl';
+import { UserSettings } from '@prisma/client';
+import { useSession } from 'next-auth/react';
 
 interface Dream {
   id: string;
@@ -36,7 +40,21 @@ const fetchDream = async (token: string): Promise<Dream> => {
   return data;
 };
 
+const fetchUserSettings = async (): Promise<UserSettings> => {
+  const { data } = await axios.get('/api/users/load-settings');
+  return data;
+};
+
 export default function DreamPage({ params }: { params: { token: string } }) {
+  const { theme } = useTheme();
+  const t = useTranslations('dreamPage');
+  const { data: session } = useSession();
+  const { data: userSettings, isLoading: isLoadingSettings } =
+    useQuery<UserSettings>({
+      queryKey: ['userSettings'],
+      queryFn: fetchUserSettings,
+      enabled: !!session,
+    });
   const {
     data: dream,
     isLoading,
@@ -46,41 +64,45 @@ export default function DreamPage({ params }: { params: { token: string } }) {
     queryFn: () => fetchDream(params.token),
   });
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading || isLoadingSettings) return <LoadingSpinner />;
   if (isError) return <ErrorMessage />;
   if (!dream) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white py-12">
+    <div
+      className={`min-h-screen ${theme === 'dark' ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-blue-50 to-white'} py-12 px-4 sm:px-6 lg:px-8`}
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-4xl mx-auto"
       >
-        <Card className="mb-8 overflow-hidden">
-          <CardHeader className="bg-blue-500 text-white">
-            <CardTitle className="text-3xl sm:text-4xl font-bold mb-4">
+        <Card className="mb-8 overflow-hidden shadow-lg">
+          <CardHeader
+            className={`${theme === 'dark' ? 'bg-blue-900' : 'bg-blue-500'} text-white p-6`}
+          >
+            <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               {dream.title}
             </CardTitle>
-            <div className="flex flex-wrap items-center space-x-4">
+            <div className="flex flex-wrap items-center gap-3">
               <Badge
                 variant="secondary"
-                className="flex items-center space-x-1"
+                className={`flex items-center space-x-1 ${theme === 'dark' ? 'bg-blue-800' : 'bg-blue-200'} text-white`}
               >
                 <CalendarIcon className="w-4 h-4" />
-                <span>{formatDate(dream.date)}</span>
+                <span>{formatDate(dream.date, userSettings?.language)}</span>
               </Badge>
               <Badge
                 variant="secondary"
-                className="flex items-center space-x-1"
+                className={`flex items-center space-x-1 ${theme === 'dark' ? 'bg-blue-800' : 'bg-blue-200'} text-white`}
               >
                 {dream.isPublic ? (
                   <EyeIcon className="w-4 h-4" />
                 ) : (
                   <EyeOffIcon className="w-4 h-4" />
                 )}
-                <span>{dream.isPublic ? 'Público' : 'Privado'}</span>
+                <span>{dream.isPublic ? t('public') : t('private')}</span>
               </Badge>
             </div>
           </CardHeader>
@@ -92,15 +114,23 @@ export default function DreamPage({ params }: { params: { token: string } }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Card>
+            <Card
+              className={`shadow-md ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}
+            >
               <CardHeader>
-                <CardTitle className="text-2xl font-semibold text-gray-800 flex items-center">
-                  <BookOpenIcon className="w-6 h-6 mr-2 text-blue-500" />
-                  Descrição do Sonho
+                <CardTitle
+                  className={`text-xl sm:text-2xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-800'} flex items-center`}
+                >
+                  <BookOpenIcon
+                    className={`w-6 h-6 mr-2 ${theme === 'dark' ? 'text-blue-400' : 'text-blue-500'}`}
+                  />
+                  {t('dreamDescription')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 leading-relaxed">
+                <p
+                  className={`${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}
+                >
                   {dream.description}
                 </p>
               </CardContent>
@@ -113,23 +143,33 @@ export default function DreamPage({ params }: { params: { token: string } }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Card className="bg-indigo-50">
+              <Card
+                className={`shadow-md ${theme === 'dark' ? 'bg-gray-700' : 'bg-indigo-50'}`}
+              >
                 <CardHeader>
-                  <CardTitle className="text-2xl font-semibold text-indigo-800 flex items-center">
+                  <CardTitle
+                    className={`text-xl sm:text-2xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-indigo-800'} flex items-center`}
+                  >
                     {dream.interpretation && dream.imageUrl ? (
                       <>
-                        <BrainIcon className="w-6 h-6 mr-2 text-indigo-600" />
-                        Interpretação e Imagem do Sonho
+                        <BrainIcon
+                          className={`w-6 h-6 mr-2 ${theme === 'dark' ? 'text-indigo-400' : 'text-indigo-600'}`}
+                        />
+                        {t('interpretationAndImage')}
                       </>
                     ) : dream.interpretation ? (
                       <>
-                        <BrainIcon className="w-6 h-6 mr-2 text-indigo-600" />
-                        Interpretação do Sonho
+                        <BrainIcon
+                          className={`w-6 h-6 mr-2 ${theme === 'dark' ? 'text-indigo-400' : 'text-indigo-600'}`}
+                        />
+                        {t('dreamInterpretation')}
                       </>
                     ) : (
                       <>
-                        <ImageIcon className="w-6 h-6 mr-2 text-indigo-600" />
-                        Imagem do Sonho
+                        <ImageIcon
+                          className={`w-6 h-6 mr-2 ${theme === 'dark' ? 'text-indigo-400' : 'text-indigo-600'}`}
+                        />
+                        {t('dreamImage')}
                       </>
                     )}
                   </CardTitle>
@@ -137,10 +177,14 @@ export default function DreamPage({ params }: { params: { token: string } }) {
                 <CardContent className="space-y-6">
                   {dream.interpretation && (
                     <div>
-                      <h3 className="text-xl font-semibold text-indigo-700 mb-2">
-                        Interpretação:
+                      <h3
+                        className={`text-lg sm:text-xl font-semibold ${theme === 'dark' ? 'text-indigo-300' : 'text-indigo-700'} mb-2`}
+                      >
+                        {t('interpretation')}:
                       </h3>
-                      <p className="text-indigo-700 leading-relaxed">
+                      <p
+                        className={`${theme === 'dark' ? 'text-gray-300' : 'text-indigo-700'} leading-relaxed`}
+                      >
                         {dream.interpretation}
                       </p>
                     </div>
@@ -151,20 +195,22 @@ export default function DreamPage({ params }: { params: { token: string } }) {
                         {dream.imageStyle && (
                           <Badge
                             variant="secondary"
-                            className="text-sm px-3 py-1 bg-indigo-100 text-indigo-800 border border-indigo-300 rounded-full self-start"
+                            className={`text-sm px-3 py-1 ${
+                              theme === 'dark'
+                                ? 'bg-indigo-900 text-indigo-100 border-indigo-700'
+                                : 'bg-indigo-100 text-indigo-800 border-indigo-300'
+                            } rounded-full self-start`}
                           >
-                            Estilo:{' '}
-                            {
-                              imageTypes[
-                                dream.imageStyle as keyof typeof imageTypes
-                              ]
-                            }
+                            {t('style')}:{' '}
+                            {t(
+                              `imageTypes.${dream.imageStyle as keyof typeof imageTypes}`
+                            )}
                           </Badge>
                         )}
                         <div className="relative w-full aspect-square rounded-lg overflow-hidden shadow-lg">
                           <Image
                             src={dream.imageUrl}
-                            alt="Imagem representativa do sonho"
+                            alt={t('dreamImageAlt')}
                             layout="fill"
                             objectFit="contain"
                             className="transition-transform duration-300 hover:scale-105"
@@ -184,9 +230,12 @@ export default function DreamPage({ params }: { params: { token: string } }) {
 }
 
 function LoadingSpinner() {
+  const { theme } = useTheme();
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      className={`min-h-screen ${theme === 'dark' ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-blue-50 to-white'} py-12 px-4 sm:px-6 lg:px-8`}
+    >
+      <div className="max-w-4xl mx-auto">
         <Card className="mb-8">
           <CardHeader>
             <Skeleton className="h-8 w-3/4 mb-4" />
@@ -219,16 +268,24 @@ function LoadingSpinner() {
 }
 
 function ErrorMessage() {
+  const { theme } = useTheme();
+  const t = useTranslations('dreamPage');
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-blue-100 to-white">
+    <div
+      className={`flex justify-center items-center min-h-screen ${theme === 'dark' ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-blue-50 to-white'}`}
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <Card className="bg-red-50 border-red-200">
+        <Card
+          className={`${theme === 'dark' ? 'bg-red-900 border-red-700' : 'bg-red-50 border-red-200'}`}
+        >
           <CardHeader>
-            <CardTitle className="text-red-800 flex items-center">
+            <CardTitle
+              className={`${theme === 'dark' ? 'text-red-100' : 'text-red-800'} flex items-center`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 mr-2"
@@ -243,13 +300,14 @@ function ErrorMessage() {
                   d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                 />
               </svg>
-              Erro!
+              {t('error')}!
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-red-600">
-              Ocorreu um erro ao carregar o sonho. Por favor, tente novamente
-              mais tarde.
+            <p
+              className={`${theme === 'dark' ? 'text-red-200' : 'text-red-600'}`}
+            >
+              {t('errorMessage')}
             </p>
           </CardContent>
         </Card>
@@ -258,8 +316,10 @@ function ErrorMessage() {
   );
 }
 
-function formatDate(dateString: string): string {
+function formatDate(dateString: string, language?: string): string {
   const date = parseISO(dateString);
   const zonedDate = toZonedTime(date, 'America/Sao_Paulo');
-  return format(zonedDate, "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
+  return format(zonedDate, "dd 'de' MMMM 'de' yyyy", {
+    locale: language === 'en-US' ? enUS : ptBR,
+  });
 }

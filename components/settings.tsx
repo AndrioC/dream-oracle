@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'react-toastify';
+import { useTranslations } from 'next-intl';
 
 type UserSettings = {
   language: string;
@@ -35,6 +36,7 @@ export default function SettingsPageComponent() {
   const { data: session } = useSession();
   const { setTheme } = useTheme();
   const queryClient = useQueryClient();
+  const t = useTranslations('settings');
 
   const { data: userSettings, isLoading } = useQuery<UserSettings>({
     queryKey: ['userSettings'],
@@ -47,10 +49,10 @@ export default function SettingsPageComponent() {
     onSuccess: (data) => {
       queryClient.setQueryData(['userSettings'], data);
       setTheme(data.theme);
-      toast.success('Configurações atualizadas com sucesso!');
+      toast.success(t('updateSuccess'));
     },
     onError: () => {
-      toast.error('Erro ao atualizar as configurações. Tente novamente.');
+      toast.error(t('updateError'));
     },
   });
 
@@ -67,22 +69,18 @@ export default function SettingsPageComponent() {
   };
 
   if (isLoading) {
-    return <div className="text-center py-8">Carregando configurações...</div>;
+    return <div className="text-center py-8">{t('loading')}</div>;
   }
 
   if (!userSettings) {
-    return (
-      <div className="text-center py-8">Configurações não encontradas</div>
-    );
+    return <div className="text-center py-8">{t('notFound')}</div>;
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">
-            Configurações do Usuário
-          </CardTitle>
+          <CardTitle className="text-2xl font-bold">{t('title')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div>
@@ -90,18 +88,18 @@ export default function SettingsPageComponent() {
               htmlFor="language"
               className="block text-sm font-medium text-foreground mb-2"
             >
-              Idioma
+              {t('language')}
             </label>
             <Select
               value={userSettings.language}
               onValueChange={handleLanguageChange}
             >
               <SelectTrigger id="language">
-                <SelectValue placeholder="Selecione o idioma" />
+                <SelectValue placeholder={t('selectLanguage')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="pt-BR">Português (Brasil)</SelectItem>
-                <SelectItem value="en-US">English</SelectItem>
+                <SelectItem value="pt-BR">{t('portuguese')}</SelectItem>
+                <SelectItem value="en-US">{t('english')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -110,19 +108,19 @@ export default function SettingsPageComponent() {
               htmlFor="theme"
               className="block text-sm font-medium text-foreground mb-2"
             >
-              Tema
+              {t('theme')}
             </label>
             <Select
               value={userSettings.theme}
               onValueChange={handleThemeChange}
             >
               <SelectTrigger id="theme">
-                <SelectValue placeholder="Selecione o tema" />
+                <SelectValue placeholder={t('selectTheme')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="light">Claro</SelectItem>
-                <SelectItem value="dark">Escuro</SelectItem>
-                <SelectItem value="system">Sistema</SelectItem>
+                <SelectItem value="light">{t('light')}</SelectItem>
+                <SelectItem value="dark">{t('dark')}</SelectItem>
+                <SelectItem value="system">{t('system')}</SelectItem>
               </SelectContent>
             </Select>
           </div>

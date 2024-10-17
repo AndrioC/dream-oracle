@@ -35,6 +35,7 @@ import {
 } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios, { AxiosError } from 'axios';
+import { useTheme } from 'next-themes';
 
 type User = {
   id: number;
@@ -105,6 +106,7 @@ export default function DreamFeed({
   refetch,
 }: DreamFeedProps) {
   const t = useTranslations('dreamFeed');
+  const { theme } = useTheme();
   const queryClient = useQueryClient();
   const [imageLoading, setImageLoading] = useState<{ [key: number]: boolean }>(
     {}
@@ -237,7 +239,7 @@ export default function DreamFeed({
   if (isError) return <ErrorMessage message={t('error')} />;
 
   return (
-    <div className="space-y-8 max-w-2xl mx-auto">
+    <div className="space-y-8 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <AnimatePresence>
         {data?.pages.map((page, pageIndex) => (
           <React.Fragment key={pageIndex}>
@@ -246,6 +248,7 @@ export default function DreamFeed({
                 key={dream.id}
                 dream={dream}
                 t={t}
+                theme={theme}
                 imageLoading={imageLoading}
                 setImageLoading={setImageLoading}
                 expandedImageLoading={expandedImageLoading}
@@ -303,6 +306,7 @@ type DreamCardProps = {
 const DreamCard = ({
   dream,
   t,
+  theme,
   imageLoading,
   setImageLoading,
   expandedImageLoading,
@@ -316,15 +320,15 @@ const DreamCard = ({
   setNewComment,
   editingComment,
   setEditingComment,
-}: DreamCardProps) => (
+}: DreamCardProps & { theme: string | undefined }) => (
   <motion.div
     initial={{ opacity: 0, y: 50 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -50 }}
     transition={{ duration: 0.5 }}
   >
-    <Card className="overflow-hidden bg-card shadow-md dark:shadow-zinc-800">
-      <CardHeader className="flex flex-row items-center gap-4">
+    <Card className="overflow-hidden bg-card shadow-md dark:shadow-zinc-800 transition-colors duration-300">
+      <CardHeader className="flex flex-row items-center gap-4 bg-muted/50 dark:bg-muted/20">
         <Avatar>
           <AvatarImage
             src={dream.user?.image || '/placeholder-user.jpg'}
@@ -343,7 +347,7 @@ const DreamCard = ({
           </p>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 p-6">
         {dream.imageUrl && (
           <DreamImage
             dream={dream}
@@ -352,20 +356,21 @@ const DreamCard = ({
             expandedImageLoading={expandedImageLoading}
             setExpandedImageLoading={setExpandedImageLoading}
             t={t}
+            theme={theme}
           />
         )}
         <AutoResizeTextarea
           value={dream.description}
-          className="w-full resize-none bg-background text-foreground"
+          className="w-full resize-none bg-background text-foreground rounded-md p-3"
         />
         {dream.interpretation && (
           <AutoResizeTextarea
             value={dream.interpretation}
-            className="w-full resize-none bg-secondary text-secondary-foreground"
+            className="w-full resize-none bg-secondary text-secondary-foreground rounded-md p-3"
           />
         )}
       </CardContent>
-      <CardFooter className="flex justify-between bg-muted/50">
+      <CardFooter className="flex justify-between bg-muted/30 dark:bg-muted/10 p-4">
         <LikeButton
           dreamId={dream.id}
           likes={dream.likes}
@@ -386,6 +391,7 @@ const DreamCard = ({
         editingComment={editingComment}
         setEditingComment={setEditingComment}
         t={t}
+        theme={theme}
       />
     </Card>
   </motion.div>
@@ -409,14 +415,14 @@ const DreamImage = ({
   expandedImageLoading,
   setExpandedImageLoading,
   t,
-}: DreamImageProps) => (
-  <div className="relative">
+}: DreamImageProps & { theme: string | undefined }) => (
+  <div className="relative rounded-lg overflow-hidden">
     <Image
       src={dream.imageUrl || ''}
       alt={dream.title}
       width={400}
       height={300}
-      className={`w-full h-64 object-cover rounded-md transition-opacity duration-300 ${
+      className={`w-full h-64 object-cover transition-opacity duration-300 ${
         imageLoading[dream.id] ? 'opacity-0' : 'opacity-100'
       }`}
       placeholder="blur"
@@ -429,8 +435,8 @@ const DreamImage = ({
       }
     />
     {imageLoading[dream.id] && (
-      <div className="absolute inset-0 flex items-center justify-center bg-muted/50 backdrop-blur-sm rounded-md">
-        <Loader2 className="h-8 w-8 animate-spin" />
+      <div className="absolute inset-0 flex items-center justify-center bg-muted/50 backdrop-blur-sm rounded-lg">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )}
     <Dialog>
@@ -438,17 +444,17 @@ const DreamImage = ({
         <Button
           variant="outline"
           size="icon"
-          className="absolute bottom-2 right-2"
+          className="absolute bottom-2 right-2 bg-background/80 hover:bg-background transition-colors duration-200"
         >
           <Expand className="h-4 w-4" />
           <span className="sr-only">{t('expand')}</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[45vw] max-h-[100vh] sm:w-4/5 sm:h-4/5 flex items-center justify-center p-4">
-        <div className="relative w-full h-full min-h-[300px] flex items-center justify-center">
+      <DialogContent className="max-w-[30vw] max-h-[85vh] sm:max-w-[40vw] sm:max-h-[70vh] flex items-center justify-center p-0">
+        <div className="relative w-full h-full min-h-[500px] flex items-center justify-center">
           {expandedImageLoading && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted/80 backdrop-blur-sm rounded-md">
-              <Loader2 className="h-16 w-16 animate-spin mb-4" />
+              <Loader2 className="h-16 w-16 animate-spin mb-4 text-primary" />
               <p className="text-sm text-muted-foreground">
                 {t('loadingImage')}
               </p>
@@ -458,12 +464,13 @@ const DreamImage = ({
             src={dream.imageUrl || ''}
             alt={dream.title}
             fill
+            className="object-contain"
             onLoadingComplete={() => setExpandedImageLoading(false)}
             onLoad={() => setExpandedImageLoading(false)}
             onError={() => setExpandedImageLoading(false)}
           />
         </div>
-        <DialogClose className="absolute top-2 right-2 rounded-full bg-background p-2 hover:bg-muted">
+        <DialogClose className="absolute top-2 right-2 rounded-full bg-background/80 p-2 hover:bg-background transition-colors duration-200">
           <X className="h-4 w-4" />
           <span className="sr-only">{t('close')}</span>
         </DialogClose>
@@ -489,7 +496,7 @@ const LikeButton = ({
     variant="ghost"
     onClick={() => likeMutation.mutate(dreamId)}
     disabled={actionLoading[`like-${dreamId}`]}
-    className="transition-all duration-300 ease-in-out hover:bg-primary/10 dark:hover:bg-primary/20 mt-3"
+    className="transition-all duration-300 ease-in-out hover:bg-primary/10 dark:hover:bg-primary/20"
   >
     {actionLoading[`like-${dreamId}`] ? (
       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -498,8 +505,8 @@ const LikeButton = ({
         className={`mr-2 h-4 w-4 transition-colors
           ${
             likes.length > 0
-              ? 'fill-purple-500 text-purple-500'
-              : 'fill-none text-muted-foreground group-hover:text-purple-500'
+              ? 'fill-primary text-primary'
+              : 'fill-none text-muted-foreground group-hover:text-primary'
           }`}
       />
     )}
@@ -514,7 +521,7 @@ type CommentButtonProps = {
 const CommentButton = ({ commentsCount }: CommentButtonProps) => (
   <Button
     variant="ghost"
-    className="transition-all duration-300 ease-in-out hover:bg-primary/10 dark:hover:bg-primary/20 mt-3"
+    className="transition-all duration-300 ease-in-out hover:bg-primary/10 dark:hover:bg-primary/20"
   >
     <MessageCircle className="mr-2 h-4 w-4" />
     {commentsCount}
@@ -557,8 +564,9 @@ const CommentSection = ({
   editingComment,
   setEditingComment,
   t,
-}: CommentSectionProps) => (
-  <div className="p-4 bg-background dark:bg-zinc-800">
+  theme,
+}: CommentSectionProps & { theme: string | undefined }) => (
+  <div className="p-4 bg-background dark:bg-zinc-800 transition-colors duration-300">
     <div className="flex items-start space-x-2 mb-4">
       <Avatar className="w-8 h-8">
         <AvatarImage src="/placeholder-user.jpg" alt="Current user" />
@@ -598,6 +606,7 @@ const CommentSection = ({
           editCommentMutation={editCommentMutation}
           deleteCommentMutation={deleteCommentMutation}
           t={t}
+          theme={theme}
         />
       ))}
     </AnimatePresence>
@@ -628,13 +637,16 @@ const CommentItem = ({
   editCommentMutation,
   deleteCommentMutation,
   t,
-}: CommentItemProps) => (
+  theme,
+}: CommentItemProps & { theme: string | undefined }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -20 }}
     transition={{ duration: 0.3 }}
-    className="mt-2 p-2 bg-secondary dark:bg-zinc-700 rounded flex items-start space-x-2"
+    className={`mt-2 p-2 ${
+      theme === 'dark' ? 'bg-zinc-700' : 'bg-secondary'
+    } rounded-md flex items-start space-x-2 transition-colors duration-300`}
   >
     <Avatar className="w-8 h-8">
       <AvatarImage
@@ -653,6 +665,7 @@ const CommentItem = ({
           actionLoading={actionLoading}
           editCommentMutation={editCommentMutation}
           t={t}
+          theme={theme}
         />
       ) : (
         <DisplayedComment
@@ -661,6 +674,7 @@ const CommentItem = ({
           actionLoading={actionLoading}
           deleteCommentMutation={deleteCommentMutation}
           t={t}
+          theme={theme}
         />
       )}
     </div>
@@ -687,14 +701,17 @@ const EditingCommentForm = ({
   actionLoading,
   editCommentMutation,
   t,
-}: EditingCommentFormProps) => (
+  theme,
+}: EditingCommentFormProps & { theme: string | undefined }) => (
   <>
     <Textarea
       value={editingComment.content}
       onChange={(e) =>
         setEditingComment({ ...editingComment, content: e.target.value })
       }
-      className="mb-2 resize-none"
+      className={`mb-2 resize-none ${
+        theme === 'dark' ? 'bg-zinc-600' : 'bg-background'
+      } transition-colors duration-300`}
       rows={2}
     />
     <div className="space-x-2">
@@ -742,7 +759,8 @@ const DisplayedComment = ({
   setEditingComment,
   actionLoading,
   deleteCommentMutation,
-}: DisplayedCommentProps) => (
+  theme,
+}: DisplayedCommentProps & { theme: string | undefined }) => (
   <>
     <p className="text-sm">{comment.content}</p>
     <div className="flex justify-between items-center mt-1">
@@ -756,7 +774,9 @@ const DisplayedComment = ({
           onClick={() =>
             setEditingComment({ id: comment.id, content: comment.content })
           }
-          className="transition-all duration-300 ease-in-out hover:bg-primary/10 dark:hover:bg-primary/20"
+          className={`transition-all duration-300 ease-in-out ${
+            theme === 'dark' ? 'hover:bg-primary/20' : 'hover:bg-primary/10'
+          }`}
         >
           <Edit className="h-3 w-3" />
         </Button>
@@ -765,7 +785,11 @@ const DisplayedComment = ({
           size="sm"
           onClick={() => deleteCommentMutation.mutate(comment.id)}
           disabled={actionLoading[`delete-${comment.id}`]}
-          className="transition-all duration-300 ease-in-out hover:bg-destructive/10 dark:hover:bg-destructive/20"
+          className={`transition-all duration-300 ease-in-out ${
+            theme === 'dark'
+              ? 'hover:bg-destructive/20'
+              : 'hover:bg-destructive/10'
+          }`}
         >
           {actionLoading[`delete-${comment.id}`] ? (
             <Loader2 className="h-3 w-3 animate-spin" />
@@ -798,7 +822,7 @@ const AutoResizeTextarea = ({ value, className }: AutoResizeTextareaProps) => {
       ref={textareaRef}
       readOnly
       value={value}
-      className={`${className} overflow-hidden`}
+      className={`${className} overflow-hidden transition-colors duration-300`}
     />
   );
 };
@@ -809,7 +833,7 @@ type LoadingIndicatorProps = {
 
 const LoadingIndicator = ({ message }: LoadingIndicatorProps) => (
   <div className="text-center py-4 text-foreground">
-    <Loader2 className="h-6 w-6 animate-spin inline-block mr-2" />
+    <Loader2 className="h-6 w-6 animate-spin inline-block mr-2 text-primary" />
     {message}
   </div>
 );
@@ -819,5 +843,7 @@ type ErrorMessageProps = {
 };
 
 const ErrorMessage = ({ message }: ErrorMessageProps) => (
-  <div className="text-center py-8 text-destructive">{message}</div>
+  <div className="text-center py-8 text-destructive bg-destructive/10 rounded-md">
+    {message}
+  </div>
 );

@@ -8,8 +8,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
+import { ptBR, enUS } from 'date-fns/locale';
 import axios from 'axios';
+import { useTranslations } from 'next-intl';
+import { UserSettings } from '@prisma/client';
+import { useSession } from 'next-auth/react';
 
 type Notification = {
   id: number;
@@ -23,6 +26,11 @@ type Notification = {
   };
 };
 
+const fetchUserSettings = async (): Promise<UserSettings> => {
+  const { data } = await axios.get('/api/users/load-settings');
+  return data;
+};
+
 async function fetchNotifications(): Promise<Notification[]> {
   const { data } = await axios.get('/api/users/load-notification');
   return data;
@@ -34,28 +42,49 @@ async function markNotificationsAsRead(
   await axios.put('/api/users/read-notification', { notificationIds });
 }
 
-function getNotificationMessage(notification: Notification): string {
+function getNotificationMessage(
+  notification: Notification,
+  t: (key: string, values?: Record<string, string>) => string
+): string {
   switch (notification.type) {
     case 'LIKE':
-      return `Alguém curtiu seu sonho "${notification.dream.title}"`;
+      return t('notifications.types.like', {
+        dreamTitle: notification.dream.title,
+      });
     case 'COMMENT':
-      return `Alguém comentou em seu sonho "${notification.dream.title}"`;
+      return t('notifications.types.comment', {
+        dreamTitle: notification.dream.title,
+      });
     default:
-      return `Nova atividade em seu sonho "${notification.dream.title}"`;
+      return t('notifications.types.default', {
+        dreamTitle: notification.dream.title,
+      });
   }
 }
 
 export default function NotificationDropdown() {
+  const { data: session } = useSession();
   const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
+  const t = useTranslations('notifications');
 
   const {
     data: notifications,
-    isLoading,
-    isError,
+    isLoading: notificationsLoading,
+    isError: notificationsError,
   } = useQuery<Notification[]>({
     queryKey: ['notifications'],
     queryFn: fetchNotifications,
+  });
+
+  const {
+    data: userSettings,
+    isLoading: userSettingsLoading,
+    isError: userSettingsError,
+  } = useQuery<UserSettings>({
+    queryKey: ['userSettings'],
+    queryFn: fetchUserSettings,
+    enabled: !!session,
   });
 
   const markAsReadMutation = useMutation({
@@ -81,6 +110,19 @@ export default function NotificationDropdown() {
     }
   };
 
+  const getDateLocale = () => {
+    return userSettings?.language === 'en-US' ? enUS : ptBR;
+  };
+
+  const formatDate = (date: string) => {
+    const locale = getDateLocale();
+    const formatString = locale === enUS ? "d 'of' MMMM" : "d 'de' MMMM";
+    return format(new Date(date), formatString, { locale });
+  };
+
+  const isLoading = notificationsLoading || userSettingsLoading;
+  const isError = notificationsError || userSettingsError;
+
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
@@ -95,7 +137,7 @@ export default function NotificationDropdown() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-80 p-4 space-y-4">
         <div className="flex justify-between items-center mb-2">
-          <h3 className="font-semibold text-lg">Notificações</h3>
+          <h3 className="font-semibold text-lg">{t('title')}</h3>
           {unreadCount > 0 && (
             <Button
               variant="outline"
@@ -107,18 +149,14 @@ export default function NotificationDropdown() {
               {markAsReadMutation.isPending ? (
                 <Loader2 className="h-4 w-4 animate-spin mr-2" />
               ) : null}
-              Marcar todas como lidas
+              {t('markAllAsRead')}
             </Button>
           )}
         </div>
         {isLoading ? (
-          <p className="text-center text-muted-foreground">
-            Carregando notificações...
-          </p>
+          <p className="text-center text-muted-foreground">{t('loading')}</p>
         ) : isError ? (
-          <p className="text-center text-red-500">
-            Erro ao carregar notificações
-          </p>
+          <p className="text-center text-red-500">{t('error')}</p>
         ) : notifications && notifications.length > 0 ? (
           notifications.map((notification) => (
             <div
@@ -127,12 +165,10 @@ export default function NotificationDropdown() {
             >
               <div className="flex-grow pr-8">
                 <p className="font-medium text-sm">
-                  {getNotificationMessage(notification)}
+                  {getNotificationMessage(notification, t)}
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {format(new Date(notification.createdAt), "d 'de' MMMM", {
-                    locale: ptBR,
-                  })}
+                  {formatDate(notification.createdAt)}
                 </p>
               </div>
               {!notification.read && (
@@ -148,14 +184,14 @@ export default function NotificationDropdown() {
                   ) : (
                     <Check className="h-4 w-4 text-green-600" />
                   )}
-                  <span className="sr-only">Marcar como lida</span>
+                  <span className="sr-only">{t('markAsRead')}</span>
                 </Button>
               )}
             </div>
           ))
         ) : (
           <p className="text-center text-muted-foreground text-base">
-            Nenhuma notificação
+            {t('empty')}
           </p>
         )}
       </DropdownMenuContent>

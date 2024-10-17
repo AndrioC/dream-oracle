@@ -65,6 +65,7 @@ export async function POST(request: Request) {
 
     if (generateImage) {
       try {
+        console.log('DESCRIPTION', description, 'IMAGE_TYPE', imageType);
         imageUrl = await generateDreamImage(description, imageType);
         if (imageUrl) {
           await prisma.dream.update({
