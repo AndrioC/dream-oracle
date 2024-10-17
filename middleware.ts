@@ -3,12 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 const LOCALES = ['pt', 'en'];
-const DEFAULT_LOCALE = 'pt';
 
 const intlMiddleware = createMiddleware({
   locales: LOCALES,
-  defaultLocale: DEFAULT_LOCALE,
-  localeDetection: false,
+  defaultLocale: 'en',
+  localeDetection: true,
 });
 
 export async function middleware(request: NextRequest) {
@@ -29,21 +28,40 @@ export async function middleware(request: NextRequest) {
 
   if (isDreamsPage || isFeedPage || isSettingsPage) {
     if (!token) {
-      return NextResponse.redirect(
-        new URL(`/${DEFAULT_LOCALE}/login`, request.url)
-      );
+      const locale = getLocale(request);
+      return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
     }
     return NextResponse.next();
   }
 
   if (isRootPage) {
-    const locale = request.cookies.get('NEXT_LOCALE')?.value || DEFAULT_LOCALE;
+    const locale = getLocale(request);
     return NextResponse.redirect(new URL(`/${locale}`, request.url));
   }
 
   const response = intlMiddleware(request);
 
   return response;
+}
+
+function getLocale(request: NextRequest): string {
+  const localeCookie = request.cookies.get('NEXT_LOCALE')?.value;
+  if (localeCookie && LOCALES.includes(localeCookie)) {
+    return localeCookie;
+  }
+
+  const acceptLanguage = request.headers.get('accept-language');
+  if (acceptLanguage) {
+    const detectedLocale = acceptLanguage
+      .split(',')[0]
+      .split('-')[0]
+      .toLowerCase();
+    if (LOCALES.includes(detectedLocale)) {
+      return detectedLocale;
+    }
+  }
+
+  return LOCALES[0];
 }
 
 export const config = {
