@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { InstagramLogoIcon } from '@radix-ui/react-icons';
 import { useLocale, useTranslations } from 'next-intl';
+
+import logoImage from '@/assets/app-icon2-no-bg.png';
 
 const MotionDiv = dynamic<
   React.ComponentProps<typeof import('framer-motion').motion.div>
@@ -52,9 +55,17 @@ export default function Footer() {
           transition={{ duration: 0.8 }}
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">{t('title')}</h3>
-              <p className="text-purple-200 mb-4">{t('description')}</p>
+            <div className="flex flex-col items-start">
+              <div className="flex flex-col items-center">
+                <Image
+                  src={logoImage}
+                  alt="Dream Oracle Logo"
+                  width={150}
+                  height={50}
+                  className="mb-4"
+                />
+                <p className="text-purple-200 mb-4">{t('description')}</p>
+              </div>
               <div className="flex space-x-4">
                 {socialLinks.map((link) => (
                   <a

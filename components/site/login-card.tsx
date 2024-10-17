@@ -15,6 +15,8 @@ import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 
+import logoImage from '@/assets/app-icon2-no-bg.png';
+
 const MotionDiv = dynamic<
   React.ComponentProps<typeof import('framer-motion').motion.div>
 >(() => import('framer-motion').then((mod) => mod.motion.div), { ssr: false });
@@ -49,15 +51,19 @@ export function LoginCard() {
               stiffness: 260,
               damping: 20,
             }}
-            className="flex justify-center"
+            className="flex justify-center items-center"
           >
-            <Image
-              src="/placeholder.svg?height=120&width=120"
-              alt={t('logoAlt')}
-              width={120}
-              height={120}
-              className="rounded-full border-4 border-white/30 shadow-lg"
-            />
+            <div className="rounded-full border-4 border-gray-300 shadow-lg">
+              <div className="flex justify-center items-center rounded-full overflow-hidden w-[130px] h-[130px]">
+                <Image
+                  src={logoImage}
+                  alt={t('logoAlt')}
+                  width={130}
+                  height={130}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </MotionDiv>
           <MotionDiv whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button

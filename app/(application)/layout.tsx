@@ -6,6 +6,8 @@ import './globals.css';
 import Header from '@/components/header';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Favicon from '/public/favicon.png';
+
 import { auth } from '@/auth';
 
 const geistSans = localFont({
@@ -23,6 +25,14 @@ export const metadata: Metadata = {
   title: 'Dream Oracle - AI Dream Interpretation',
   description:
     'Discover the meaning of your dreams with AI interpretation and unique image generation.',
+
+  icons: [
+    {
+      rel: 'icon',
+      url: Favicon.src,
+      type: 'image/png',
+    },
+  ],
 };
 
 async function AuthenticatedHeader() {

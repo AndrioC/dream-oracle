@@ -23,6 +23,8 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
+import logoImage from '@/assets/app-icon2-no-bg.png';
+
 async function fetchCredits() {
   const { data } = await axios.get('/api/users/credits');
   return data.credits;
@@ -50,8 +52,14 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link href="/" className="text-2xl font-bold text-primary">
-              {t('title')}
+            <Link href="/" className="flex items-center">
+              <Image
+                src={logoImage}
+                alt="Dream Oracle Logo"
+                width={150}
+                height={60}
+                className="h-14 w-auto"
+              />
             </Link>
             <nav className="hidden md:flex space-x-6 text-sm font-medium">
               <Link

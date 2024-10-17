@@ -7,6 +7,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { unstable_setRequestLocale } from 'next-intl/server';
 
+import Favicon from '/public/favicon.png';
+
 const inter = Inter({ subsets: ['latin'] });
 
 async function getMessages(lang: string) {
@@ -21,7 +23,6 @@ async function getMessages(lang: string) {
 async function getMetadata(lang: string): Promise<Metadata> {
   const messages = await getMessages(lang);
   return {
-    metadataBase: new URL('http://localhost:3000'),
     title: messages.metadata.title,
     description: messages.metadata.description,
     keywords: messages.metadata.keywords,
@@ -30,6 +31,13 @@ async function getMetadata(lang: string): Promise<Metadata> {
       title: messages.metadata.ogTitle,
       description: messages.metadata.ogDescription,
     },
+    icons: [
+      {
+        rel: 'icon',
+        url: Favicon.src,
+        type: 'image/png',
+      },
+    ],
   };
 }
 
@@ -58,6 +66,9 @@ export default async function RootLayout({
 
   return (
     <html lang={lang}>
+      <head>
+        <link rel="icon" href="/favicon.png" type="image/png" />
+      </head>
       <body className={inter.className}>
         <NextIntlClientProvider locale={lang} messages={messages}>
           <header>
