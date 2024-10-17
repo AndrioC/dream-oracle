@@ -5,13 +5,14 @@ import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import bgImage from '@/assets/bg.png';
 
 export default function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const t = useTranslations('HeroSection');
+  const locale = useLocale();
 
   useEffect(() => {
     const updateMousePosition = (ev: MouseEvent) => {
@@ -71,7 +72,7 @@ export default function HeroSection() {
           transition={{ delay: 0.6, duration: 0.8 }}
         >
           <Link
-            href="/login"
+            href={`/${locale}/login`}
             className="inline-flex items-center px-8 py-4 border-2 border-purple-300 text-lg font-medium rounded-full text-white bg-purple-600 hover:bg-purple-700 transition duration-300 ease-in-out transform hover:scale-105"
           >
             {t('ctaButton')}

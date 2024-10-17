@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Edit, Brain, Image, CreditCard } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 const MotionDiv = dynamic(
   () => import('framer-motion').then((mod) => mod.motion.div),
@@ -21,6 +21,7 @@ const stepIcons = {
 export default function HowItWorks() {
   const [isMounted, setIsMounted] = useState(false);
   const t = useTranslations('HowItWorks');
+  const locale = useLocale();
 
   useEffect(() => {
     setIsMounted(true);
@@ -91,7 +92,7 @@ export default function HowItWorks() {
           className="mt-12 text-center"
         >
           <Link
-            href="/login"
+            href={`/${locale}/login`}
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-900 bg-purple-300 hover:bg-purple-200 transition duration-150 ease-in-out"
           >
             {t('ctaButton')}

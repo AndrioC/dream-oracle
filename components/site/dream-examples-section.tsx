@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import dreamExample01 from '@/assets/dream01-example.png';
 import dreamExample02 from '@/assets/dream02-example.png';
@@ -24,6 +24,7 @@ const dreamExampleImages = {
 export default function DreamExamples() {
   const [isMounted, setIsMounted] = useState(false);
   const t = useTranslations('DreamExamples');
+  const locale = useLocale();
 
   useEffect(() => {
     setIsMounted(true);
@@ -95,7 +96,7 @@ export default function DreamExamples() {
           className="mt-12 text-center"
         >
           <Link
-            href="/login"
+            href={`/${locale}/login`}
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-900 bg-purple-300 hover:bg-purple-200 transition duration-150 ease-in-out"
           >
             {t('ctaButton')}
