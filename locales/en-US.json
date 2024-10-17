@@ -10,6 +10,9 @@
   "dreamFeed": {
     "loading": "Loading...",
     "error": "Error loading dreams.",
+    "by": "by",
+    "addComment": "Add comment",
+    "postComment": "Post comment",
     "noDreams": {
       "title": "No dreams found",
       "message": "It seems there are no dreams registered yet. Be the first to",

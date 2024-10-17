@@ -10,6 +10,9 @@
   "dreamFeed": {
     "loading": "Carregando...",
     "error": "Erro ao carregar os sonhos.",
+    "by": "por",
+    "addComment": "Adicionar comentário",
+    "postComment": "Postar comentário",
     "noDreams": {
       "title": "Nenhum sonho encontrado",
       "message": "Parece que ainda não há sonhos cadastrados. Seja o primeiro a",

@@ -36,6 +36,8 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import axios, { AxiosError } from 'axios';
 import { useTheme } from 'next-themes';
+import { useSession } from 'next-auth/react';
+import { Session } from 'next-auth';
 
 type User = {
   id: number;
@@ -107,6 +109,7 @@ export default function DreamFeed({
 }: DreamFeedProps) {
   const t = useTranslations('dreamFeed');
   const { theme } = useTheme();
+  const { data: session } = useSession();
   const queryClient = useQueryClient();
   const [imageLoading, setImageLoading] = useState<{ [key: number]: boolean }>(
     {}
@@ -262,6 +265,7 @@ export default function DreamFeed({
                 setNewComment={setNewComment}
                 editingComment={editingComment}
                 setEditingComment={setEditingComment}
+                session={session}
               />
             ))}
           </React.Fragment>
@@ -301,6 +305,7 @@ type DreamCardProps = {
   setEditingComment: React.Dispatch<
     React.SetStateAction<{ id: number; content: string } | null>
   >;
+  session: Session | null;
 };
 
 const DreamCard = ({
@@ -320,6 +325,7 @@ const DreamCard = ({
   setNewComment,
   editingComment,
   setEditingComment,
+  session,
 }: DreamCardProps & { theme: string | undefined }) => (
   <motion.div
     initial={{ opacity: 0, y: 50 }}
@@ -392,6 +398,7 @@ const DreamCard = ({
         setEditingComment={setEditingComment}
         t={t}
         theme={theme}
+        session={session || undefined}
       />
     </Card>
   </motion.div>
@@ -550,6 +557,7 @@ type CommentSectionProps = {
     React.SetStateAction<{ id: number; content: string } | null>
   >;
   t: (key: string) => string;
+  session: Session | undefined;
 };
 
 const CommentSection = ({
@@ -565,19 +573,23 @@ const CommentSection = ({
   setEditingComment,
   t,
   theme,
+  session,
 }: CommentSectionProps & { theme: string | undefined }) => (
   <div className="p-4 bg-background dark:bg-zinc-800 transition-colors duration-300">
     <div className="flex items-start space-x-2 mb-4">
-      <Avatar className="w-8 h-8">
-        <AvatarImage src="/placeholder-user.jpg" alt="Current user" />
-        <AvatarFallback>U</AvatarFallback>
+      <Avatar>
+        <AvatarImage
+          src={session?.user?.image || undefined}
+          alt="Current user"
+        />
+        <AvatarFallback>{session?.user?.name?.[0] || 'U'}</AvatarFallback>
       </Avatar>
       <div className="flex-grow">
         <Textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           placeholder={t('addComment')}
-          className="mb-2 resize-none"
+          className="mb-2 resize-none dark:border-gray-600"
           rows={1}
         />
         <Button
