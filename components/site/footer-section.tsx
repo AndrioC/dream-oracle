@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { InstagramLogoIcon } from '@radix-ui/react-icons';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 const MotionDiv = dynamic<
   React.ComponentProps<typeof import('framer-motion').motion.div>
@@ -33,6 +33,7 @@ const socialLinks = [
 export default function Footer() {
   const [isMounted, setIsMounted] = useState(false);
   const t = useTranslations('Footer');
+  const locale = useLocale();
 
   useEffect(() => {
     setIsMounted(true);
@@ -90,7 +91,7 @@ export default function Footer() {
                 {legalLinks.map((link) => (
                   <li key={link.name}>
                     <Link
-                      href={link.href}
+                      href={`/${locale}${link.href}`}
                       className="text-purple-200 hover:text-white transition duration-150 ease-in-out"
                     >
                       {t(`links.${link.name}`)}

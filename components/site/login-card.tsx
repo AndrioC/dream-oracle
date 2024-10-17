@@ -12,7 +12,7 @@ import { LogIn } from 'lucide-react';
 import { signIn } from 'next-auth/react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 const MotionDiv = dynamic<
@@ -21,6 +21,8 @@ const MotionDiv = dynamic<
 
 export function LoginCard() {
   const t = useTranslations('LoginCard');
+
+  const locale = useLocale();
 
   return (
     <MotionDiv
@@ -70,7 +72,7 @@ export function LoginCard() {
             {t.rich('termsAndPrivacy', {
               terms: (chunks) => (
                 <Link
-                  href="/terms"
+                  href={`/${locale}/terms`}
                   className="underline hover:text-white transition-colors duration-200"
                 >
                   {chunks}
@@ -78,7 +80,7 @@ export function LoginCard() {
               ),
               privacy: (chunks) => (
                 <Link
-                  href="/privacy"
+                  href={`/${locale}/privacy`}
                   className="underline hover:text-white transition-colors duration-200"
                 >
                   {chunks}
