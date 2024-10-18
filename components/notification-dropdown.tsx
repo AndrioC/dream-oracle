@@ -48,15 +48,15 @@ function getNotificationMessage(
 ): string {
   switch (notification.type) {
     case 'LIKE':
-      return t('notifications.types.like', {
+      return t('types.like', {
         dreamTitle: notification.dream.title,
       });
     case 'COMMENT':
-      return t('notifications.types.comment', {
+      return t('types.comment', {
         dreamTitle: notification.dream.title,
       });
     default:
-      return t('notifications.types.default', {
+      return t('types.default', {
         dreamTitle: notification.dream.title,
       });
   }

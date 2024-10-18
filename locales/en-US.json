@@ -13,6 +13,8 @@
     "by": "by",
     "addComment": "Add comment",
     "postComment": "Post comment",
+    "saveEdit": "Save",
+    "cancelEdit": "Cancel",
     "noDreams": {
       "title": "No dreams found",
       "message": "It seems there are no dreams registered yet. Be the first to",

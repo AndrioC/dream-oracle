@@ -13,6 +13,8 @@
     "by": "por",
     "addComment": "Adicionar comentário",
     "postComment": "Postar comentário",
+    "saveEdit": "Salvar",
+    "cancelEdit": "Cancelar",
     "noDreams": {
       "title": "Nenhum sonho encontrado",
       "message": "Parece que ainda não há sonhos cadastrados. Seja o primeiro a",

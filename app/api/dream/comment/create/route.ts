@@ -37,6 +37,14 @@ export async function POST(request: Request) {
       },
     });
 
+    await prisma.notification.create({
+      data: {
+        type: 'COMMENT',
+        dreamId: dreamId,
+        userId: dream.userId,
+      },
+    });
+
     if (dream.userId !== Number(session.user.id)) {
       await prisma.notification.create({
         data: {

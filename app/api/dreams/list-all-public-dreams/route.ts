@@ -31,6 +31,14 @@ export async function GET(request: NextRequest) {
           userId: true,
           content: true,
           createdAt: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              image: true,
+            },
+          },
         },
         orderBy: {
           createdAt: 'desc',

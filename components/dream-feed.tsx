@@ -662,11 +662,11 @@ const CommentItem = ({
   >
     <Avatar className="w-8 h-8">
       <AvatarImage
-        src={comment.user.image || '/placeholder-user.jpg'}
-        alt={comment.user.name || 'User'}
+        src={comment?.user?.image || undefined}
+        alt={comment?.user?.name || 'User'}
       />
       <AvatarFallback>
-        {comment.user.name ? comment.user.name[0] : 'U'}
+        {comment?.user?.name ? comment?.user?.name[0] : 'U'}
       </AvatarFallback>
     </Avatar>
     <div className="flex-grow">
@@ -777,7 +777,8 @@ const DisplayedComment = ({
     <p className="text-sm">{comment.content}</p>
     <div className="flex justify-between items-center mt-1">
       <small className="text-xs text-muted-foreground">
-        {comment.user.name} • {new Date(comment.createdAt).toLocaleDateString()}
+        {comment?.user?.name} •{' '}
+        {new Date(comment.createdAt).toLocaleDateString()}
       </small>
       <div className="space-x-1">
         <Button
